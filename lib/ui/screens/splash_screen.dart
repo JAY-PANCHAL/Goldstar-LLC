@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gif/flutter_gif.dart';
 import 'package:get/get.dart';
 import '../../common/utils/dimensions.dart';
 import '../../common/utils/image_paths.dart';
