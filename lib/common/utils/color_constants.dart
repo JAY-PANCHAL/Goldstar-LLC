@@ -49,6 +49,8 @@ class AppColors {
   static const Color hinttextColor = Color(0xFF1F2B2E66);
   static const Color yellowApp = Color(0xFFFFA31A);
   static const Color notesColor = Color(0xFFE5EACC);
+  static const Color usableGray = const Color(0xFFF5F5F5);
+  static const Color usableOrange = const Color(0xFFFFA31A);
 
   static MaterialColor appColor = const MaterialColor(
     0xFF12B2D5,

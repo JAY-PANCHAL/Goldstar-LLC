@@ -1,8 +1,5 @@
+
 import 'package:get/get.dart';
-import 'package:goldstarllc/ui/screens/dashboard.dart';
-import 'package:goldstarllc/ui/screens/login_screen.dart';
-import 'package:goldstarllc/ui/screens/scanner_screen.dart';
-import 'package:goldstarllc/ui/screens/search_style_screen.dart';
 
 import '../ui/screens/splash_screen.dart';
 
@@ -32,5 +29,13 @@ class AppPages {
         name: Routes.scanner,
         page: () => const ScannerScreen(),
         transition: Transition.rightToLeft)
+    GetPage(
+        name: Routes.addNotes,
+        page: () => AddNotesScreen(),
+        transition: Transition.rightToLeft),
+    GetPage(
+        name: Routes.notesList,
+        page: () => NotesListScreen(),
+        transition: Transition.rightToLeft),
   ];
 }

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../common/utils/dimensions.dart';
@@ -17,9 +18,12 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void initState() {
+
+
 /*
     _splashController.getTokenApi(context);
 */
+
 
     super.initState();
   }

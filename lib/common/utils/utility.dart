@@ -252,7 +252,8 @@ class Utils {
                   child: Text(AppConstants.no),
                   onPressed: () {
                     Navigator.of(Get.overlayContext!, rootNavigator: true)
-                        .pop(AppConstants.logout);                  },
+                        .pop(AppConstants.logout);
+                  },
                 ),
               ],
             ),
@@ -275,7 +276,68 @@ class Utils {
                   child: Text(AppConstants.no),
                   onPressed: () {
                     Navigator.of(Get.overlayContext!, rootNavigator: true)
-                        .pop(AppConstants.logout);                  },
+                        .pop(AppConstants.logout);
+                  },
+                )
+              ],
+            ),
+            barrierDismissible: false,
+          );
+  }
+
+  static void getDeleteDialog(context) {
+    Platform.isAndroid
+        ? Get.dialog(
+            AlertDialog(
+              backgroundColor: Colors.white,
+              title: Text('Are you sure you want to delete selected list'),
+              actions: [
+                TextButton(
+                  child: Text(
+                    AppConstants.yes,
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  onPressed: () {
+                    Navigator.of(Get.overlayContext!, rootNavigator: true)
+                        .pop(AppConstants.logout);
+                    //  Get.back();
+                    // StorageService().clearData();
+                    // Get.offNamedUntil(Routes.splash, (route) => false);
+                  },
+                ),
+                TextButton(
+                  child: Text(
+                    AppConstants.no,
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  onPressed: () {
+                    Navigator.of(Get.overlayContext!, rootNavigator: true)
+                        .pop(AppConstants.logout);
+                  },
+                ),
+              ],
+            ),
+            barrierDismissible: false,
+          )
+        : Get.dialog(
+            CupertinoAlertDialog(
+              title: Text('Are you sure you want to delete selected list'),
+              actions: [
+                CupertinoDialogAction(
+                  child: Text(AppConstants.yes),
+                  onPressed: () {
+                    Navigator.of(Get.overlayContext!, rootNavigator: true)
+                        .pop(AppConstants.logout);
+                    // StorageService().clearData();
+                    // Get.offNamedUntil(Routes.splash, (route) => false);
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: Text(AppConstants.no),
+                  onPressed: () {
+                    Navigator.of(Get.overlayContext!, rootNavigator: true)
+                        .pop(AppConstants.logout);
+                  },
                 )
               ],
             ),
@@ -294,7 +356,7 @@ class Utils {
                   onPressed: () {
                     Get.back();
                     StorageService().clearAllData();
-                   // Get.offNamedUntil(Routes.auth, (route) => false);
+                    // Get.offNamedUntil(Routes.auth, (route) => false);
                   },
                 ),
               ],
@@ -310,7 +372,7 @@ class Utils {
                   onPressed: () {
                     Get.back();
                     StorageService().clearAllData();
-                   // Get.offNamedUntil(Routes.auth, (route) => false);
+                    // Get.offNamedUntil(Routes.auth, (route) => false);
                   },
                 )
               ],

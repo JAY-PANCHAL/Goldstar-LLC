@@ -8,6 +8,9 @@ abstract class Routes {
   static const dashboard = '/dashboard';
   static const searchStyleEntry = '/searchStyleEntry';
   static const scanner = "/scanner";
+  static const addNotes = '/notes';
+  static const notesList = '/notesList';
+
 
 
 
