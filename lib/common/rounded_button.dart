@@ -29,16 +29,8 @@ class RoundedButton extends StatelessWidget {
                 spreadRadius: 10,
                 blurRadius: 10.0)
           ],*/
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [0.0, 1.0],
-            colors: [
-              AppColors.redDark,
-              AppColors.redLight,
-            ],
-          ),
-          color: AppColors.redLight,
+
+          color: AppColors.yellowApp,
           borderRadius: BorderRadius.circular(10),
         ),
         child: ElevatedButton(

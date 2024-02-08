@@ -16,14 +16,12 @@ import 'base_controller.dart';
 
 class LoginController extends BaseController {
   String deviceType = "";
+
   final StorageService storageService = StorageService();
   final repo = getIt.get<GetxRepository>();
   TextEditingController phoneController = TextEditingController();
   TextEditingController nameController = TextEditingController();var formKey = GlobalKey<FormState>();
-  var otpValue = "".obs;
-  var isdialogBtnLoading = false.obs;
-  var isOtpBtnLoading = false.obs;
-
+  var isObscureText=false.obs;
 /*  void validate(BuildContext context) {
     final isValid = formKey.currentState?.validate();
     Get.focusScope?.unfocus();

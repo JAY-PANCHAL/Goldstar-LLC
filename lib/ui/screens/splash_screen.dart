@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../common/utils/dimensions.dart';
@@ -14,18 +13,13 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
-
-  final SplashController _splashController =
-      Get.put(SplashController());
+  final SplashController _splashController = Get.put(SplashController());
 
   @override
   void initState() {
-
-
 /*
     _splashController.getTokenApi(context);
 */
-
 
     super.initState();
   }
@@ -44,10 +38,15 @@ class _SplashScreenState extends State<SplashScreen>
       body: Container(
           height: Dimensions.screenHeight,
           width: Dimensions.screenWidth,
+          color: Colors.white,
+          /*   height: Dimensions.screenHeight,
+          width: Dimensions.screenWidth,
           decoration: BoxDecoration(
             image: DecorationImage(image: AssetImage(AppIcons.splashLogo),fit: BoxFit.fill,),
-          ),
-          child:Container()),
+          ),*/
+          child: Center(
+        child: Image.asset(AppIcons.splashLogo),
+      )),
     );
   }
 }

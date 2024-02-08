@@ -25,19 +25,11 @@ class SplashController extends BaseController {
     var _duration = Duration(
       seconds: Dimensions.screenLoadTime,
     );
-    Timer(_duration, () async {
-      Get.offNamedUntil(Routes.dashboard, (route) => false);
+      Timer(_duration, () async {
+        Get.offNamedUntil(Routes.login, (route) => false);
 
-      /*try {
-        if (storage.getString(AppConstants.eventId) != null) {
-          Get.offNamedUntil(Routes.dashboard, (route) => false);
-        } else {
-          Get.offNamedUntil(Routes.auth, (route) => false);
-        }
-      } catch (e) {
-        Get.offNamedUntil(Routes.auth, (route) => false);
-      }*/
-    });
+
+      });
   }
 
 /*  Future getTokenApi(context) async {

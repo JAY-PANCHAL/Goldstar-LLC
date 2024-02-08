@@ -1,9 +1,9 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:goldstarllc/routes/app_pages.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../common/CommanTextField.dart';
 import '../../common/rounded_button.dart';
@@ -26,8 +26,6 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    bool obscureText = true;
     var width = Utils.getScreenWidth(context);
     var height = Utils.getScreenHeight(context);
 
@@ -39,21 +37,23 @@ class LoginScreenState extends State<LoginScreen> {
           inAsyncCall: loginScreenController.isLoading.value,
           child: Scaffold(
             resizeToAvoidBottomInset: true,
+            backgroundColor: AppColors.white,
             appBar: AppBar(
-                backgroundColor: Colors.white,
-                elevation: 0,
-                automaticallyImplyLeading: false,
-                title: Text(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              automaticallyImplyLeading: false,
+              /*   title: Text(
                   AppConstants.login,
                   style: Styles.textFontRegular(
                       color: AppColors.appRed,
                       weight: FontWeight.w400,
                       size: 16.0),
                   textAlign: TextAlign.center,
-                )),
+                )),*/
+            ),
             body: SingleChildScrollView(
               child: Container(
-                height: height - 120.sp,
+                color: AppColors.white,
                 width: width,
                 child: Form(
                   key: loginScreenController.formKey,
@@ -61,24 +61,46 @@ class LoginScreenState extends State<LoginScreen> {
                     padding: EdgeInsets.all(16.0.sp),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              AppIcons.splashLogo,
+                              height: 150.sp,
+                              width: 150.sp,
+                            ),
+                            /*   Image.asset(AppIcons.goldstar,
+                              height: 150.sp,width:150.sp,),*/
+                          ],
+                        ),
+                        Utils.addGap(25),
+                        Text(
+                          "Login",
+                          style: Styles.textFontRegular(
+                              size: 40,
+                              weight: FontWeight.w500,
+                              color: Colors.black),
+                        ),
                         Utils.addGap(25),
                         getTextFormField(
                           validator: (String? value) {
                             if (value!.isEmpty) {
-                              return AppConstants.errorEmail;
+                              return AppConstants.errorLoginName;
                             }
-                            if (!Utils.isEmail(value)) {
-                              return AppConstants.validEmail;
-                            }
+
                             return null;
                           },
+                          /*    passwordButton: Icon(Icons.email,
+                          color: AppColors.black,
+                        ),*/
                           controller: loginScreenController.phoneController,
                           isObscureText: false,
                           onChanged: (String value) {},
-                          hintText: "Enter Email",
-                          labelText: "Email",
-                       /*   passwordButton: Padding(
+                          hintText: "Enter Login name",
+                          labelText: "Login name",
+                          /*   passwordButton: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: SvgPicture.asset(
                               AppIcons.email,
@@ -87,26 +109,28 @@ class LoginScreenState extends State<LoginScreen> {
                             ),
                           ),*/
                         ),
-                        Utils.addGap(10),
+                        Utils.addGap(20),
                         getTextFormField(
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return AppConstants.errorFName;
+                              return AppConstants.errorPassword;
                             }
                             return null;
                           },
-                          isObscureText: true,
+                          isObscureText:
+                              loginScreenController.isObscureText.value,
                           passwordButton: IconButton(
                             icon: Icon(
-                              obscureText
+                              loginScreenController.isObscureText.value
                                   ? Icons.visibility
                                   : Icons.visibility_off,
-                              color: AppColors.appRed,
+                              color: AppColors.black,
                             ),
                             onPressed: () {
-                              print(obscureText);
+                              print(loginScreenController.isObscureText.value);
                               setState(() {
-                                obscureText = !obscureText;
+                                loginScreenController.isObscureText.value =
+                                    !loginScreenController.isObscureText.value;
                               });
                             },
                           ),
@@ -115,19 +139,25 @@ class LoginScreenState extends State<LoginScreen> {
                           hintText: "Enter Password",
                           labelText: "Password",
                         ),
-                        Utils.addGap(10),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                          child: RoundedButton(
-                              buttonText: AppConstants.save.toUpperCase(),
-                              height: 44,
-                              width: width,
-                              onpressed: () {
-/*
-                                loginScreenController.validate(context);
-*/
-                              }),
-                        ),
+                        Utils.addGap(40),
+                        GestureDetector(
+                            child: Text(
+                          "Terms & Conditions",
+                          style: Styles.textFontRegular(
+                              size: 10.sp,
+                              weight: FontWeight.w400,
+                              color: Colors.blue),
+                        )),
+                        RoundedButton(
+                            buttonText: AppConstants.login.toUpperCase(),
+                            height: 44,
+                            width: width,
+                            onpressed: () {
+                              Get.offAllNamed(Routes.dashboard);
+                              /*
+                              loginScreenController.validate(context);
+                        */
+                            }),
                       ],
                     ),
                   ),

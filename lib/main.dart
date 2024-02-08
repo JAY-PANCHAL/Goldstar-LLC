@@ -48,6 +48,9 @@ class BusybeeAppState extends State<BusybeeApp> {
     ScreenUtil.init(context);
 
     return GetMaterialApp(
+      theme: ThemeData(
+        useMaterial3: false
+      ),
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.root,
       getPages: AppPages.routes,

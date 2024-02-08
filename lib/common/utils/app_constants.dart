@@ -169,7 +169,7 @@ class AppConstants {
   static const String longitudeK = 'longitude';
 
   //errors
-  static const String errorFName = "Please enter first name";
+  static const String errorLoginName = "Please enter login name";
   static const String errorLName = "Please enter last name";
   static const String errorEmail = "Please enter email";
   static const String validEmail = "Please enter valid email";

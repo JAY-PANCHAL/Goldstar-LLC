@@ -76,18 +76,19 @@ class getTextFormField extends StatelessWidget {
             vertical: 16.sp,
             horizontal: 16.sp),
         hintText: hintText,
-        border: UnderlineInputBorder(
+        border: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(15.0)),
             borderSide: BorderSide(color: AppColors.gray70)),
-        errorBorder: UnderlineInputBorder(
-          //  borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+        errorBorder: OutlineInputBorder(
+           borderRadius: const BorderRadius.all(Radius.circular(15.0)),
             borderSide: BorderSide(color: AppColors.red)),
         hintStyle: Styles.TextBoxHintStyle(14.0),
-        focusedBorder: UnderlineInputBorder(
-          // borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+        focusedBorder: OutlineInputBorder(
+           borderRadius: const BorderRadius.all(Radius.circular(15.0)),
           borderSide: BorderSide(color: AppColors.gray70),
         ),
-        enabledBorder: UnderlineInputBorder(
-          //borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(15.0)),
           borderSide: BorderSide(color: AppColors.gray70),
         ),
       ),
@@ -163,22 +164,24 @@ class getenabledTextFormField extends StatelessWidget {
               vertical: 16.sp,
               horizontal: 16.sp),
           hintText: hintText,
-          border: UnderlineInputBorder(
+          border: OutlineInputBorder(
+              borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+
               borderSide: BorderSide(color: AppColors.gray70)),
-          errorBorder: UnderlineInputBorder(
-            //  borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+          errorBorder: OutlineInputBorder(
+             borderRadius: const BorderRadius.all(Radius.circular(15.0)),
               borderSide: BorderSide(color: AppColors.red)),
           hintStyle: Styles.TextBoxHintStyle(14.0),
-          focusedBorder: UnderlineInputBorder(
-            // borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(15.0)),
             borderSide: BorderSide(color: AppColors.gray70),
           ),
-          disabledBorder: UnderlineInputBorder(
-            //borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+          disabledBorder: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(15.0)),
             borderSide: BorderSide(color: AppColors.gray70),
           ),
-          enabledBorder: UnderlineInputBorder(
-          //borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+          enabledBorder: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(15.0)),
           borderSide: BorderSide(color: AppColors.gray70),
     ),)
     ,
@@ -260,10 +263,10 @@ class getTransparentTextFormField extends StatelessWidget {
             vertical: 16.sp,
             horizontal: 16.sp),
         hintText: hintText,
-        border: UnderlineInputBorder(
+        border: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.transparent)),
-        errorBorder: UnderlineInputBorder(
-          //  borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+        errorBorder: OutlineInputBorder(
+           borderRadius: const BorderRadius.all(Radius.circular(15.0)),
             borderSide: BorderSide(color:Colors.transparent)),
         hintStyle:  TextStyle(
             fontFamily: "Montserrat Regular",
@@ -271,12 +274,12 @@ class getTransparentTextFormField extends StatelessWidget {
             fontStyle: FontStyle.normal,
             fontSize: 14.0.sp,
             fontWeight: FontWeight.w400),
-        focusedBorder: UnderlineInputBorder(
-          // borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+        focusedBorder: OutlineInputBorder(
+          // borderRadius: const BorderRadius.all(Radius.circular(15.0)),
           borderSide: BorderSide(color: Colors.transparent),
         ),
-        enabledBorder: UnderlineInputBorder(
-          //borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+        enabledBorder: OutlineInputBorder(
+          //borderRadius: const BorderRadius.all(Radius.circular(15.0)),
           borderSide: BorderSide(color: Colors.transparent),
         ),
       ),

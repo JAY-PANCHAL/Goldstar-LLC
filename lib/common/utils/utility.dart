@@ -73,7 +73,7 @@ class Utils {
         child: const CircularProgressIndicator(
           backgroundColor: Colors.white,
           valueColor: AlwaysStoppedAnimation<Color>(
-            AppColors.appRed,
+            AppColors.appYellow,
           ),
         ),
       ),
@@ -179,6 +179,12 @@ class Utils {
   static addMediumGap() {
     return SizedBox(
       height: 20.sp,
+    );
+  }
+
+  static addhGap(int size) {
+    return SizedBox(
+      width: size.sp,
     );
   }
 
