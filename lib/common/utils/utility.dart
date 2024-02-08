@@ -288,7 +288,7 @@ class Utils {
                   onPressed: () {
                     Get.back();
                     StorageService().clearAllData();
-                    Get.offNamedUntil(Routes.auth, (route) => false);
+                   // Get.offNamedUntil(Routes.auth, (route) => false);
                   },
                 ),
               ],
@@ -304,7 +304,7 @@ class Utils {
                   onPressed: () {
                     Get.back();
                     StorageService().clearAllData();
-                    Get.offNamedUntil(Routes.auth, (route) => false);
+                   // Get.offNamedUntil(Routes.auth, (route) => false);
                   },
                 )
               ],
