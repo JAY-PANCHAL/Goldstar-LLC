@@ -1,0 +1,6 @@
+package com.mindtech.goldstarllc.goldstarllc
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
