@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goldstarllc/common/utils/Styles.dart';
 import 'package:goldstarllc/common/utils/color_constants.dart';
 import 'package:goldstarllc/common/utils/dimensions.dart';
 import 'package:goldstarllc/common/utils/image_paths.dart';
@@ -21,15 +22,22 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          leading:
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_sharp)),
-          // title: Container(
-          //   height: Dimensions.screenHeight,
-          //   width: Dimensions.screenWidth,
-          //   child: Image(
-          //       image: AssetImage(AppIcons.splashLogo), fit: BoxFit.contain),
-          // ),
-        ),
+            backgroundColor: AppColors.white,
+            leading: GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
+              ),
+            ),
+            centerTitle: true,
+            title: Text(
+              "Add Notes",
+              style: Styles.textFontRegular(
+                  size: 16, weight: FontWeight.w400, color: Colors.black),
+            )),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -60,7 +68,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
               SizedBox(
                 height: 25.sp,
               ),
-              Row(
+              /*Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -71,15 +79,16 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                         fontWeight: FontWeight.w500),
                   ),
                 ],
-              ),
+              ),*/
               SizedBox(
                 height: 30.sp,
               ),
-              SizedBox(
-                width: 280.sp,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.sp),
                 child: TextFormField(
                   keyboardType: TextInputType.streetAddress,
                   maxLines: 10,
+                  textInputAction: TextInputAction.newline,
                   decoration: const InputDecoration(
                       filled: true,
                       fillColor: AppColors.usableGray,
@@ -110,7 +119,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                   height: 50.sp,
                   child: ElevatedButton(
                       onPressed: () {
-                        Get.toNamed(Routes.notesList);
+                        Get.back();
                       },
                       style: ButtonStyle(
                           shape: MaterialStatePropertyAll(
@@ -128,13 +137,18 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
               SizedBox(
                 height: 30.sp,
               ),
-              SizedBox(
-                  width: 280.sp,
-                  child: Text(
-                    "Close",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16.sp),
-                  )),
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: SizedBox(
+                    width: 280.sp,
+                    child: Text(
+                      "Close",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16.sp),
+                    )),
+              ),
             ],
           ),
         ));

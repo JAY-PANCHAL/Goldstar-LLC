@@ -80,7 +80,7 @@ class _DashboardState extends State<Dashboard> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Utils.addGap(30),
-              Text("Hello User",
+              Text("Hello User, ",
                   style: Styles.textFontRegular(
                       size: 16, weight: FontWeight.w400)),
               Utils.addGap(10),
@@ -146,62 +146,67 @@ class _DashboardState extends State<Dashboard> {
                     )),
               ),
               Utils.addGap(40),
-              Container(
-                  width: width,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      stops: [0.0, 1.0],
-                      colors: [
-                        AppColors.notesColor,
-                        Colors.yellow.shade100,
-                      ],
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                          color: AppColors.grayE6.withOpacity(0.15),
-                          offset: Offset(0, 0),
-                          spreadRadius: 10,
-                          blurRadius: 10.0)
-                    ],
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.notesColor,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          AppIcons.notes,
-                          fit: BoxFit.fill,
-                          width: 150.sp,
-                          height: 120.sp,
-                        ),
-                      ),
-                      Utils.addhGap(10),
-                      Container(
-                        color: AppColors.gray1C,
-                        width: 1.sp,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Notes",
-                              style: Styles.textFontRegular(
-                                  size: 16,
-                                  weight: FontWeight.w500,
-                                  color: Colors.black45)),
-                          Text("Create notes",
-                              style: Styles.textFontRegular(
-                                  size: 14,
-                                  weight: FontWeight.w400,
-                                  color: Colors.black45))
+              GestureDetector(
+                  onTap: (){
+                    Get.toNamed(Routes.notesList);
+                  },
+                child: Container(
+                    width: width,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        stops: [0.0, 1.0],
+                        colors: [
+                          AppColors.notesColor,
+                          Colors.yellow.shade100,
                         ],
-                      )
-                    ],
-                  )),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                            color: AppColors.grayE6.withOpacity(0.15),
+                            offset: Offset(0, 0),
+                            spreadRadius: 10,
+                            blurRadius: 10.0)
+                      ],
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.notesColor,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            AppIcons.notes,
+                            fit: BoxFit.fill,
+                            width: 150.sp,
+                            height: 120.sp,
+                          ),
+                        ),
+                        Utils.addhGap(10),
+                        Container(
+                          color: AppColors.gray1C,
+                          width: 1.sp,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Notes",
+                                style: Styles.textFontRegular(
+                                    size: 16,
+                                    weight: FontWeight.w500,
+                                    color: Colors.black45)),
+                            Text("Create notes",
+                                style: Styles.textFontRegular(
+                                    size: 14,
+                                    weight: FontWeight.w400,
+                                    color: Colors.black45))
+                          ],
+                        )
+                      ],
+                    )),
+              ),
               Spacer(),
 /*
               Row(

@@ -290,7 +290,7 @@ class Utils {
         ? Get.dialog(
             AlertDialog(
               backgroundColor: Colors.white,
-              title: Text('Are you sure you want to delete selected list'),
+              title: Text('Are you sure you want to delete selected note?'),
               actions: [
                 TextButton(
                   child: Text(
@@ -321,7 +321,7 @@ class Utils {
           )
         : Get.dialog(
             CupertinoAlertDialog(
-              title: Text('Are you sure you want to delete selected list'),
+              title: Text('\Are you sure you want to delete selected note?'),
               actions: [
                 CupertinoDialogAction(
                   child: Text(AppConstants.yes),

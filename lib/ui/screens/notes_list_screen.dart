@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:goldstarllc/common/utils/Styles.dart';
 import 'package:goldstarllc/common/utils/color_constants.dart';
 import 'package:goldstarllc/common/utils/dimensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:goldstarllc/common/utils/image_paths.dart';
 import 'package:goldstarllc/common/utils/utility.dart';
+import 'package:goldstarllc/routes/app_pages.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:get/get.dart';
 
 class NotesListScreen extends StatefulWidget {
   const NotesListScreen({super.key});
@@ -38,22 +42,90 @@ class _NotesListScreenState extends State<NotesListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Dimensions.screenWidth = MediaQuery.of(context).size.width;
-    Dimensions.screenHeight = MediaQuery.of(context).size.height;
+    var width = Utils.getScreenWidth(context);
+    var height = Utils.getScreenHeight(context);
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          leading:
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_sharp)),
+          centerTitle: true,
+          backgroundColor: AppColors.white,
+          title:
+          Text(
+            "Notes",
+            style: Styles.textFontRegular(size: 16, weight: FontWeight.w400),
+          ),/* Image.asset(
+            AppIcons.goldstar,
+            height: kToolbarHeight - 10, *//*width: 150.sp*//*
+          ),*/
+          leading: GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
+              )),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed(Routes.addNotes);
+          },
           backgroundColor: AppColors.usableOrange,
           child: Icon(Icons.add),
         ),
         body: Column(
           children: [
             SizedBox(height: 10.sp),
+            Container(
+                margin: EdgeInsets.all(20),
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                width: width,
+                decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: AppColors.black53.withOpacity(0.1),
+                          offset: Offset(0, 0),
+                          spreadRadius: 2.sp,
+                          blurRadius: 5.0.sp)
+                    ],
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15)),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.search,
+                      color: AppColors.gray1C,
+                    ),
+                    Utils.addhGap(10),
+                    Expanded(
+                      child: TextFormField(
+                        //                          controller: completedTaskController.searchController,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Search in notes ..."),
+                        onFieldSubmitted: (value) {
+                          //       completedTaskController.apiCallForCompletedTask();
+                        },
+                      ),
+                    ),
+                    /*    Visibility(
+                      visible: completedTaskController.searchController.text.length > 0,
+                      child: GestureDetector(
+                        onTap: () {
+                          completedTaskController.apiCallForCompletedTask();
+                          completedTaskController.searchController.text = "";
+                        },
+                        child: Icon(
+                          Icons.close,
+                          color: primaryColor,
+                        ),
+                      ),
+                    ),*/
+                  ],
+                )),
+
+/*
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -89,10 +161,11 @@ class _NotesListScreenState extends State<NotesListScreen> {
                 ),
               ],
             ),
-            SizedBox(
+*/
+            /*  SizedBox(
               height: 20.sp,
-            ),
-            Row(
+            ),*/
+            /*        Row(
               children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(20.sp, 0.sp, 0.sp, 0.sp),
@@ -105,138 +178,148 @@ class _NotesListScreenState extends State<NotesListScreen> {
                   ),
                 ),
               ],
-            ),
-            SizedBox(
+            ),*/
+            /* SizedBox(
               height: 25.sp,
-            ),
+            ),*/
             Expanded(
                 child: Padding(
-              padding: EdgeInsets.fromLTRB(20.sp, 0, 20.sp, 0),
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) => Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.sp),
-                      color: AppColors.usableGray),
-                  margin: EdgeInsets.only(bottom: 40.sp),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 12.sp),
-                            child: Text(
-                              "FROCXXXXXXXX / ",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          Text(
-                            "QSJDD484843",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 14.sp,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          Spacer(),
-                          IconButton(
-                              alignment: Alignment.topRight,
-                              onPressed: () {
-                                Utils.getDeleteDialog(context);
-                              },
-                              icon: Icon(
-                                Icons.delete_outline,
-                                color: Colors.red,
-                              ))
-                        ],
+                  padding:  EdgeInsets.symmetric(horizontal: 16.0.sp),
+                  child: ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) => Card(
+                        elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.fromLTRB(5.sp, 0.sp, 5.sp, 0.sp),
-                              child: Text(
-                                "-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   -   -   -   ",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 12.sp,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500),
+                      margin: EdgeInsets.symmetric(vertical: 10.sp),
+                      child: Container(
+                        decoration: BoxDecoration(
+                         /*   boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3), // changes position of shadow
                               ),
+                            ],*/
+                            borderRadius: BorderRadius.circular(12.sp),
+                            color: AppColors.usableGray),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 12.sp),
+                                  child: Text(
+                                    "FROCXXXXXXXX / ",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                                Text(
+                                  "QSJDD484843",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Spacer(),
+                                IconButton(
+                                    alignment: Alignment.topRight,
+                                    onPressed: () {
+                                      Utils.getDeleteDialog(context);
+                                    },
+                                    icon: Icon(
+                                      Icons.delete_outline,
+                                      color: Colors.red,
+                                    ))
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        // mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.fromLTRB(12.sp, 0.sp, 10.sp, 0),
-                              child: Text(
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ",
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 10,
-                                textAlign: TextAlign.left,
-                              ),
+                            Utils.addGap(10),
+                            Row(
+                              children: List.generate(
+                                  700 ~/ 10,
+                                      (index) => Expanded(
+                                    child: Container(
+                                      color:
+                                      index % 2 == 0 ? Colors.transparent : Colors.grey,
+                                      height: 2,
+                                    ),
+                                  )),
                             ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10.sp,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 12.sp),
-                            child: Text(
-                              "Date 22/09/2023, 10:00 AM",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 12.sp,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w600),
+                            Utils.addGap(20),
+                            Row(
+                              // mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.fromLTRB(12.sp, 0.sp, 10.sp, 0),
+                                    child: Text(
+                                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ",
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 10,
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          Spacer(),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.edit,
-                                // color: Colors.black,
-                              )),
-                          IconButton(
-                              onPressed: () {
-                                launchGmail();
-                              },
-                              icon: Icon(
-                                Icons.mail,
-                              )),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.sms,
-                              )),
-                        ],
+                            SizedBox(
+                              height: 10.sp,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 12.sp),
+                                  child: Text(
+                                    "Date 22/09/2023, 10:00 AM",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                                Spacer(),
+                                IconButton(
+                                    onPressed: () {
+                                      Get.toNamed(Routes.addNotes);
+                                    },
+                                    icon: Icon(
+                                      Icons.edit,
+                                      // color: Colors.black,
+                                    )),
+                                IconButton(
+                                    onPressed: () {
+                                      launchGmail();
+                                    },
+                                    icon: Icon(
+                                      Icons.mail,
+                                    )),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.sms,
+                                    )),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            ))
+                ))
           ],
         ));
   }

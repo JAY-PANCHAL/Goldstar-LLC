@@ -63,10 +63,14 @@ class _SearchStyleEntryScreenState extends State<SearchStyleEntryScreen> {
               color: AppColors.black,
             )),
         centerTitle: true,
-        title: Image.asset(
+        title:
+        Text(
+          "Style Info",
+          style: Styles.textFontRegular(size: 16, weight: FontWeight.w400),
+        ),/* Image.asset(
           AppIcons.goldstar,
-          height: kToolbarHeight - 10, /*width: 150.sp*/
-        ),
+          height: kToolbarHeight - 10, *//*width: 150.sp*//*
+        ),*/
       ),
       floatingActionButton: FloatingActionButton.extended(
         elevation: 1,
@@ -204,29 +208,34 @@ class _SearchStyleEntryScreenState extends State<SearchStyleEntryScreen> {
                       ))),
             ),
             Utils.addGap(16),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.sp),
-              child: Container(
+            GestureDetector(
+              onTap: (){
+                 Get.toNamed(Routes.addNotes);
+              },
+              child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.sp),
-                width: width,
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 1.sp),
-                    /*   boxShadow: [
-                      BoxShadow(
-                          color: AppColors.black53.withOpacity(0.1),
-                          offset: Offset(0, 0),
-                          spreadRadius: 2.sp,
-                          blurRadius: 5.0.sp)
-                    ],*/
-                    color: Colors.white10,
-                    borderRadius: BorderRadius.circular(15)),
-                child: Padding(
-                  padding: EdgeInsets.all(16.0.sp),
-                  child: Text(
-                    "Add Note",
-                    textAlign: TextAlign.center,
-                    style: Styles.textFontRegular(
-                        size: 14, weight: FontWeight.w400),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16.sp),
+                  width: width,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey, width: 1.sp),
+                      /*   boxShadow: [
+                        BoxShadow(
+                            color: AppColors.black53.withOpacity(0.1),
+                            offset: Offset(0, 0),
+                            spreadRadius: 2.sp,
+                            blurRadius: 5.0.sp)
+                      ],*/
+                      color: Colors.white10,
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0.sp),
+                    child: Text(
+                      "Add Note",
+                      textAlign: TextAlign.center,
+                      style: Styles.textFontRegular(
+                          size: 14, weight: FontWeight.w400),
+                    ),
                   ),
                 ),
               ),

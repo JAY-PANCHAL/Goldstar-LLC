@@ -28,7 +28,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
     return GestureDetector(
       child: Scaffold(
-        appBar: AppBar(toolbarHeight: 0, backgroundColor: AppColors.white),
+        appBar: AppBar(toolbarHeight: 0, backgroundColor: Colors.transparent),
         body: Container(
           width: width, // custom wrap size
           height: height,
@@ -63,6 +63,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                         child: Icon(Icons.arrow_back, color: AppColors.white),
                       ),
                     ),
+/*
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.symmetric(
@@ -86,6 +87,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                         ),
                       ),
                     ),
+*/
                   ],
                 ),
               ),
