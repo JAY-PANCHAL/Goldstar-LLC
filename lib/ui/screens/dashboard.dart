@@ -84,8 +84,9 @@ class _DashboardState extends State<Dashboard> {
                   style: Styles.textFontRegular(
                       size: 16, weight: FontWeight.w400)),
               Utils.addGap(10),
-              GestureDetector(
+              InkWell(
                 onTap: () {
+                  print("search clicked");
                   Get.toNamed(Routes.searchStyleEntry);
                 },
                 child: Container(

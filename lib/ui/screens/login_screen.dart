@@ -95,11 +95,12 @@ class LoginScreenState extends State<LoginScreen> {
                           /*    passwordButton: Icon(Icons.email,
                           color: AppColors.black,
                         ),*/
-                          controller: loginScreenController.phoneController,
+                          controller: loginScreenController.nameController,
                           isObscureText: false,
                           onChanged: (String value) {},
                           hintText: "Enter Login name",
                           labelText: "Login name",
+
                           /*   passwordButton: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: SvgPicture.asset(
@@ -134,7 +135,7 @@ class LoginScreenState extends State<LoginScreen> {
                               });
                             },
                           ),
-                          controller: loginScreenController.nameController,
+                          controller: loginScreenController.passwordController,
                           onChanged: (String value) {},
                           hintText: "Enter Password",
                           labelText: "Password",
@@ -153,10 +154,8 @@ class LoginScreenState extends State<LoginScreen> {
                             height: 44,
                             width: width,
                             onpressed: () {
-                              Get.offAllNamed(Routes.dashboard);
-                              /*
-                              loginScreenController.validate(context);
-                        */
+                             // Get.offAllNamed(Routes.dashboard);
+                            loginScreenController.validate(context);
                             }),
                       ],
                     ),
@@ -164,7 +163,8 @@ class LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-          ));
+          )
+      );
     });
   }
 }

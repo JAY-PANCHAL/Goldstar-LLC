@@ -5,7 +5,7 @@ import 'package:goldstarllc/ui/screens/dashboard.dart';
 import 'package:goldstarllc/ui/screens/login_screen.dart';
 import 'package:goldstarllc/ui/screens/notes_list_screen.dart';
 import 'package:goldstarllc/ui/screens/scanner_screen.dart';
-import 'package:goldstarllc/ui/screens/search_style_screen.dart';
+import 'package:goldstarllc/ui/screens/style_detail_screen.dart';
 
 import '../ui/screens/splash_screen.dart';
 
@@ -29,7 +29,7 @@ class AppPages {
         transition: Transition.rightToLeft),
     GetPage(
         name: Routes.searchStyleEntry,
-        page: () => SearchStyleEntryScreen(),
+        page: () => SearchDetailsScreen(),
         transition: Transition.rightToLeft),
     GetPage(
         name: Routes.scanner,

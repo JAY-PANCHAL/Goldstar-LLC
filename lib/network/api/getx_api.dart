@@ -124,14 +124,14 @@ class GetxApi {
     }
   }
 
-  Future<Response> loadPostData(endpoint, params, token) async {
+  Future<Response> loadPostData(endpoint, params) async {
 
     final Map<String, dynamic> header = new Map<String, dynamic>();
-    header["token"] = token;
+  //  header["token"] = token;
 
     try {
       final Response response = await dioClient.post(endpoint,
-          queryParameters: params ,options: Options(headers: header,contentType: 'text/html'));
+          queryParameters: params ,options: Options(headers: header,contentType: 'application/json'));
 
       Map<String, dynamic> data = response.data;
 
@@ -139,7 +139,7 @@ class GetxApi {
         await Utils.showToast(data["message"]);
       }*/
 
-      if (data['status'] == 401) {
+        if (data['status'] == 401) {
         //    await storageService.clearData();
         //Get.offAllNamed(Routes.loginonboardscreen);
       }
@@ -149,10 +149,10 @@ class GetxApi {
     }
   }
 
-  Future<Response> loadPostDataJsonType(endpoint, params, token) async {
+  Future<Response> loadPostDataJsonType(endpoint, params,token) async {
 
     final Map<String, dynamic> header = new Map<String, dynamic>();
-    header["token"] = token;
+    header["x-access-token"] = token;
 
     try {
       final Response response = await dioClient.post(endpoint,

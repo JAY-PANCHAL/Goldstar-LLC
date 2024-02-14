@@ -133,7 +133,6 @@ class AppConstants {
   static const String logout = 'Logout';
 
   static const String loginK = "login";
-  static const String passwordK = "password";
   static const String dbK = "db";
   static const String save = 'save';
   static const String sendotp = 'send otp';
@@ -148,9 +147,10 @@ class AppConstants {
 //api keys
 
   static const String uFileK = 'ufile';
-  static const String userIdK = 'user_id';
-  static const String dateK = 'date';
-  static const String fNameK = 'fNameK';
+  static const String userNameK = 'UserName';
+  static const String passwordK = 'Password';
+  static const String customerNoK= 'customer_enter_no';
+
   static const String lNameK = 'lNameK';
   static const String emailK = 'email';
   static const String phoneK = 'phone';

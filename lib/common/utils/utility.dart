@@ -1,5 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:goldstarllc/common/utils/Styles.dart';
+import 'package:goldstarllc/common/utils/image_paths.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:connectivity/connectivity.dart';
@@ -11,10 +14,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:goldstarllc/common/utils/storage_service.dart';
+import 'package:goldstarllc/network/model/loginmodel.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../network/model/validate_model.dart';
 import '../../routes/app_pages.dart';
 import 'app_constants.dart';
 import 'color_constants.dart';
@@ -65,20 +68,45 @@ class Utils {
   static loader(context) {
     return Center(
       child: Container(
-        height: 60.0,
-        width: 60.0,
+        height: 100.0,
+        width: 100.0,
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: Colors.white24, borderRadius: BorderRadius.circular(30)),
-        child: const CircularProgressIndicator(
+        /*    child:CircularProgressIndicator(
           backgroundColor: Colors.white,
-          valueColor: AlwaysStoppedAnimation<Color>(
-            AppColors.appYellow,
-          ),
+          valueColor: MultiColorTween(
+            colors: [
+              Colors.red,
+              Colors.orange,
+              Colors.yellow,
+              Colors.green,
+              Colors.blue,
+              Colors.indigo,
+              Colors.purple,
+            ],
+          ).animate(CurvedAnimation(
+            parent: AlwaysStoppedAnimation<double>(1.0),
+            curve: Interval(0, 1, curve: Curves.linear),
+          )),
+        ),*/
+        child:  LoadingIndicator(
+          indicatorType:Indicator.ballPulseRise ,
+          colors: _kDefaultRainbowColors,
+          strokeWidth: 4.0,
+
+          pathBackgroundColor:
+          Colors.black,
         ),
       ),
     );
+
   }
+  static const List<Color> _kDefaultRainbowColors = const [
+    Colors.blue,
+    Colors.indigo,
+    Colors.purple,
+  ];
 
   static bool isEmail(String email) {
     return RegExp(
@@ -139,6 +167,15 @@ class Utils {
       ),
     );
   }
+  static Widget normalText(String text) {
+    return  Text(
+     text,
+      // "14 KT Yellow Gold Ring (Sub category)",
+      textAlign: TextAlign.center,
+      style: Styles.textFontRegular(
+          size: 14, weight: FontWeight.w400),
+    );
+  }
 
   static Widget loadNetworkImage({url, mWidth, fit, mHeight}) {
     return CachedNetworkImage(
@@ -154,7 +191,27 @@ class Utils {
         ),
       ),
       placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-      errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
+      errorWidget: (context, url, error) => Image.asset( AppIcons.image2,fit: BoxFit.cover,),
+    );
+  }
+
+
+
+  static Widget loadNetworkImage1({url, mWidth, fit, mHeight}) {
+    return CachedNetworkImage(
+      imageUrl: url,
+      width: mWidth,
+      height: mHeight,
+      imageBuilder: (context, imageProvider) => Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: imageProvider,
+            fit: fit,
+          ),
+        ),
+      ),
+      placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+      errorWidget: (context, url, error) => Image.asset( AppIcons.image2,fit: BoxFit.cover,),
     );
   }
 
@@ -211,19 +268,19 @@ class Utils {
     );
   }
 
-  static Future<ValidateModel> getLoginData() async {
+  static Future<LoginModel> getLoginData() async {
     var value = await StorageService.to.getString(AppConstants.loginPref);
 
     if (value != "") {
       var data = jsonDecode(value);
-      ValidateModel validateModel = ValidateModel.fromJson(data);
+      LoginModel validateModel = LoginModel.fromJson(data);
       return validateModel;
     } else {
-      return ValidateModel();
+      return LoginModel();
     }
   }
 
-  static Future<bool> isLoggedIn() async {
+  static Future<bool> isLoggedIn() async   {
     var isloggedInPref =
         await StorageService.to.getString(AppConstants.loginPref);
     print(isloggedInPref);
