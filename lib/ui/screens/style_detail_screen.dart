@@ -4,13 +4,10 @@ import 'package:get/get.dart';
 import 'package:goldstarllc/common/utils/Styles.dart';
 import 'package:goldstarllc/common/utils/color_constants.dart';
 import 'package:goldstarllc/common/utils/utility.dart';
-import 'package:goldstarllc/controller/dashboard_controller.dart';
 import 'package:goldstarllc/controller/search_style_controller.dart';
 import 'package:goldstarllc/routes/app_pages.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../../common/utils/dimensions.dart';
 import '../../common/utils/image_paths.dart';
 
 class SearchDetailsScreen extends StatefulWidget {

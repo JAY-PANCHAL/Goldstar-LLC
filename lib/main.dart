@@ -26,17 +26,17 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   //HttpOverrides.global = MyHttpOverrides();
 
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: BusybeeApp()));
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: GoldStarLLCApp()));
 }
 
-class BusybeeApp extends StatefulWidget {
+class GoldStarLLCApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return BusybeeAppState();
+    return GoldStarLLCAppState();
   }
 }
 
-class BusybeeAppState extends State<BusybeeApp> {
+class GoldStarLLCAppState extends State<GoldStarLLCApp> {
   @override
   void initState() {
     super.initState();

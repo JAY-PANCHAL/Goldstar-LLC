@@ -1,7 +1,6 @@
 class AppConstants {
   //App related
-  static const String appName = 'Busybees';
-  static const int appVersion = 1;
+
 
   /*Shared Pref*/
   static const String apiKey = 'apiKey';
