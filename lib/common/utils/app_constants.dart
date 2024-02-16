@@ -1,7 +1,6 @@
 class AppConstants {
   //App related
 
-
   /*Shared Pref*/
   static const String apiKey = 'apiKey';
   static const String showInstruction = 'showInstruction';
@@ -148,7 +147,11 @@ class AppConstants {
   static const String uFileK = 'ufile';
   static const String userNameK = 'UserName';
   static const String passwordK = 'Password';
-  static const String customerNoK= 'customer_enter_no';
+  static const String customerNoK = 'customer_enter_no';
+  static const String noteCodeK = 'note_code';
+  static const String styleCodeK = 'llc_app_style_code';
+  static const String titleK = 'title';
+  static const String descriptionK = 'description';
 
   static const String lNameK = 'lNameK';
   static const String emailK = 'email';
@@ -189,6 +192,8 @@ class AppConstants {
   static const String errorPassword = "Please enter password";
   static const String errorNewPassword = "Please enter new password";
   static const String errorConfirmPassword = "Please enter confirm password";
+  static const String errorTitle = "Please enter title";
+  static const String errorDescription = "Please enter description";
 
   static const emirates = 'Emirates';
 
@@ -222,5 +227,4 @@ class AppConstants {
   static const dateFormat = 'dd/MM/yyyy';
   static const timeFormat = 'HH:mm';
   static const noRecord = 'No Record Found.';
-
 }

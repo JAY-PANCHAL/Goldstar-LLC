@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:goldstarllc/common/utils/Styles.dart';
+import 'package:goldstarllc/common/utils/app_constants.dart';
 import 'package:goldstarllc/common/utils/color_constants.dart';
 import 'package:goldstarllc/common/utils/dimensions.dart';
 import 'package:goldstarllc/common/utils/image_paths.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:goldstarllc/controller/add_notes_controller.dart';
 import 'package:goldstarllc/routes/app_pages.dart';
 
 class AddNotesScreen extends StatefulWidget {
-  const AddNotesScreen({super.key});
+  final int? notesCode;
+  const AddNotesScreen({super.key, this.notesCode});
 
   @override
   State<AddNotesScreen> createState() => _AddNotesScreenState();
 }
 
 class _AddNotesScreenState extends State<AddNotesScreen> {
+  final AddNotesController addNotesController = Get.put(AddNotesController());
   @override
   Widget build(BuildContext context) {
     Dimensions.screenWidth = MediaQuery.of(context).size.width;
@@ -43,53 +47,18 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
           child: Column(
             children: [
               SizedBox(height: 20.sp),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "ADD NOTE FOR STYLE :",
-                    style: TextStyle(fontSize: 18.sp),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10.sp,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "X X X X X X X X X",
-                    style:
-                        TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
               SizedBox(
                 height: 25.sp,
-              ),
-              /*Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Today’s date 22/09/2023",
-                    style: TextStyle(
-                        fontSize: 12.sp,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),*/
-              SizedBox(
-                height: 30.sp,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.sp),
                 child: TextFormField(
                   keyboardType: TextInputType.streetAddress,
-                  maxLines: 10,
+                  maxLines: 1,
                   textInputAction: TextInputAction.newline,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
+                      // hintText: "Enter Description",
+                      // hintStyle: Styles.TextBoxHintStyle(14.0),
                       filled: true,
                       fillColor: AppColors.usableGray,
                       focusedBorder: OutlineInputBorder(
@@ -107,8 +76,88 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                   cursorColor: Colors.grey,
                   style: TextStyle(
                       fontSize: 14.sp,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w600),
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+              SizedBox(
+                height: 30.sp,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.sp),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return AppConstants.errorTitle;
+                    }
+                    return null;
+                  },
+                  controller: addNotesController.titleController,
+                  keyboardType: TextInputType.streetAddress,
+                  maxLines: 1,
+                  textInputAction: TextInputAction.newline,
+                  decoration: InputDecoration(
+                      hintText: "Enter Title",
+                      hintStyle: Styles.TextBoxHintStyle(14.0),
+                      filled: true,
+                      fillColor: AppColors.usableGray,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 212, 210, 210)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 212, 210, 210)),
+                      ),
+                      focusColor: Colors.grey,
+                      hoverColor: Colors.grey),
+                  cursorColor: Colors.grey,
+                  style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+              SizedBox(
+                height: 30.sp,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.sp),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return AppConstants.errorDescription;
+                    }
+                    return null;
+                  },
+                  controller: addNotesController.descriptionController,
+                  keyboardType: TextInputType.streetAddress,
+                  maxLines: 10,
+                  textInputAction: TextInputAction.newline,
+                  decoration: InputDecoration(
+                      hintText: "Enter Description",
+                      hintStyle: Styles.TextBoxHintStyle(14.0),
+                      filled: true,
+                      fillColor: AppColors.usableGray,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 212, 210, 210)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 212, 210, 210)),
+                      ),
+                      focusColor: Colors.grey,
+                      hoverColor: Colors.grey),
+                  cursorColor: Colors.grey,
+                  style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400),
                 ),
               ),
               SizedBox(
@@ -119,7 +168,12 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                   height: 50.sp,
                   child: ElevatedButton(
                       onPressed: () {
-                        Get.back();
+                        if (widget.notesCode != null) {
+                          addNotesController.noteCode.value =
+                              widget.notesCode.toString();
+                          addNotesController.validateLoginControllers(context);
+                        }
+                        addNotesController.validateLoginControllers(context);
                       },
                       style: ButtonStyle(
                           shape: MaterialStatePropertyAll(
@@ -131,7 +185,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                         "Save Note",
                         style: TextStyle(
                             fontSize: 16.sp,
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.w400),
                       ))),
               SizedBox(
@@ -148,6 +202,9 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 16.sp),
                     )),
+              ),
+              SizedBox(
+                height: 30.sp,
               ),
             ],
           ),
