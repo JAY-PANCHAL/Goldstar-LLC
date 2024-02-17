@@ -12,4 +12,6 @@ class Endpoints {
   static const String styleDetails = '/Masters/getAllStyleDetail';
   static const String notes = '/Masters/getdata_notes_mob';
   static const String addNotes = '/Masters/addUpdatenote';
+  static const String deleteNotes= '/Masters/delete_note_note_master';
+
 }

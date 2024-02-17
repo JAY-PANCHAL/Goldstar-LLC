@@ -62,4 +62,16 @@ class GetxRepository {
       throw errorMessage;
     }
   }
+
+  Future<AddNotesModel> deleteNotes(params, token) async {
+    try {
+      final response =
+      await getxApi.loadPostDataJsonType(Endpoints.deleteNotes, params, token);
+      //return ConfigModel.fromJson(response.data);
+      return AddNotesModel.fromJson(response.data);
+    } on DioExceptions catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e as DioError).toString();
+      throw errorMessage;
+    }
+  }
 }

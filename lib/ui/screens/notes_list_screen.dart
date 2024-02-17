@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:goldstarllc/common/utils/Styles.dart';
 import 'package:goldstarllc/common/utils/color_constants.dart';
-import 'package:goldstarllc/common/utils/dimensions.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:goldstarllc/common/utils/image_paths.dart';
 import 'package:goldstarllc/common/utils/utility.dart';
 import 'package:goldstarllc/controller/notes_controller.dart';
 import 'package:goldstarllc/routes/app_pages.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'add_notes_screen.dart';
 
@@ -22,6 +20,7 @@ class NotesListScreen extends StatefulWidget {
 
 class _NotesListScreenState extends State<NotesListScreen> {
   final NotesController notesController = Get.put(NotesController());
+
   void launchGmail() async {
     const url =
         'https://myaccount.google.com/?utm_source=sign_in_no_continue&pli=1';
@@ -64,6 +63,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
     return Obx(() {
       return ModalProgressHUD(
         inAsyncCall: notesController.isLoading.value,
+        progressIndicator: Utils.loader(context),
         child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -97,7 +97,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
             body: Column(
               children: [
                 SizedBox(height: 10.sp),
-                Container(
+                /*       Container(
                     margin: EdgeInsets.all(20),
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     width: width,
@@ -129,7 +129,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                             },
                           ),
                         ),
-                        /*    Visibility(
+                        */ /*    Visibility(
                           visible: completedTaskController.searchController.text.length > 0,
                           child: GestureDetector(
                             onTap: () {
@@ -141,9 +141,9 @@ class _NotesListScreenState extends State<NotesListScreen> {
                               color: primaryColor,
                             ),
                           ),
-                        ),*/
+                        ),*/ /*
                       ],
-                    )),
+                    )),*/
 
                 /*
                 Row(
@@ -246,7 +246,15 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                 IconButton(
                                     alignment: Alignment.topRight,
                                     onPressed: () {
-                                      Utils.getDeleteDialog(context);
+                                      Utils.getDeleteDialog(context, () {
+                                        notesController.deleteNotesApi(
+                                            context,
+                                            notesController
+                                                .notesList[index].noteCode);
+                                        Navigator.of(Get.overlayContext!,
+                                                rootNavigator: true)
+                                            .pop();
+                                      });
                                     },
                                     icon: Icon(
                                       Icons.delete_outline,
@@ -310,9 +318,11 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                 IconButton(
                                     onPressed: () {
                                       Get.to(AddNotesScreen(
-                                        notesCode: notesController
-                                            .notesList[index].noteCode,
-                                      ));
+                                        notesDetails:
+                                            notesController.notesList[index],
+                                      ))?.then((value) {
+                                        getData();
+                                      });
                                     },
                                     icon: Icon(
                                       Icons.edit,

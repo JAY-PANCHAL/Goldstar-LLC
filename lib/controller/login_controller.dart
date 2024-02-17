@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goldstarllc/network/model/loginmodel.dart';
@@ -18,7 +20,7 @@ class LoginController extends BaseController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   var formKey = GlobalKey<FormState>();
-  var isObscureText = false.obs;
+  var isObscureText = true.obs;
 
   void validate(BuildContext context) {
     final isValid = formKey.currentState?.validate();
@@ -31,33 +33,35 @@ class LoginController extends BaseController {
   }
 
   Future loginAPI(context) async {
-   /* var token = await storageService.getString(AppConstants.tokenPr);
+    /* var token = await storageService.getString(AppConstants.tokenPr);
     print(token);*/
 /*
     deviceType = Utils.getDeviceType();
 */
-      var params = {
-      AppConstants.passwordK:  passwordController.text,
+    var params = {
+      AppConstants.passwordK: passwordController.text,
       AppConstants.userNameK: nameController.text,
     };
-    isLoading.value=true;
+    isLoading.value = true;
     await repo.loginAPi(params).then((value) async {
-
-      if (value !=null) {
-        isLoading.value=false;
-        LoginModel model =value;
+      if (value != null) {
+        isLoading.value = false;
+        LoginModel model = value;
         if (model.statusCode == 200) {
           await storageService.setString(
               AppConstants.tokenPr, model.data?.token ?? "");
-      // Utils.showToast(model.message);
-           Get.offAllNamed(Routes.dashboard);
+          await storageService.setString(
+              AppConstants.loginPref, jsonEncode(model.toJson()));
+
+
+          Get.offAllNamed(Routes.dashboard);
         }
-        if(model.message!=null){
+        if (model.message != null) {
           Utils.showToast(model.message);
         }
       }
     }, onError: (e) {
-      isLoading.value=false;
+      isLoading.value = false;
       Utils.showSnackBar(e.toString(), context, () {
         loginAPI(context);
       });

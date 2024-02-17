@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goldstarllc/network/model/add_notes_model.dart';
-import 'package:goldstarllc/network/model/loginmodel.dart';
-import 'package:goldstarllc/network/model/notesmodel.dart';
-import 'package:goldstarllc/routes/app_pages.dart';
 
 import '../common/service_locator.dart';
 import '../common/utils/app_constants.dart';
@@ -15,6 +12,7 @@ import 'base_controller.dart';
 class AddNotesController extends BaseController {
   final StorageService storageService = StorageService();
   final repo = getIt.get<GetxRepository>();
+
   // var notesformKey = GlobalKey<FormState>();
   var isObscureText = false.obs;
   TextEditingController styleCodeController = TextEditingController();
@@ -62,18 +60,21 @@ class AddNotesController extends BaseController {
         if (model.statusCode == 200) {
           isLoading.value = false;
           // notesList.value = model.value.data!.data ?? [];
-          Utils.showToast("Note Added Successfully");
+          //     Utils.showToast("Note Added Successfully");
           titleController.text = "";
           descriptionController.text = "";
           if (noteCode.value != "") {
             noteCode.value = "";
           }
-          Get.toNamed(Routes.notesList);
+          Get.back();
           if (model.message != null) {
             Utils.showToast(model.message);
           }
         } else {
           isLoading.value = false;
+          if (model.message != null) {
+            Utils.showToast(model.message);
+          }
         }
       }
     }, onError: (e) {

@@ -144,7 +144,9 @@ class AppConstants {
 
 //api keys
 
+  static const String notesCodek = 'note_code';
   static const String uFileK = 'ufile';
+
   static const String userNameK = 'UserName';
   static const String passwordK = 'Password';
   static const String customerNoK = 'customer_enter_no';

@@ -6,6 +6,7 @@ import 'package:goldstarllc/common/utils/color_constants.dart';
 import 'package:goldstarllc/common/utils/utility.dart';
 import 'package:goldstarllc/controller/search_style_controller.dart';
 import 'package:goldstarllc/routes/app_pages.dart';
+import 'package:goldstarllc/ui/screens/add_notes_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../common/utils/image_paths.dart';
@@ -30,6 +31,11 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
   bool isExpanded4 = false;
   bool isExpanded5 = false;
 
+//FRTH6132GS
+// FRQT4914G
+// FROF2453G
+// BRQT7311S
+// FRQT4914BG
 
   List<String> imageList = [
     AppIcons.image1,
@@ -167,10 +173,12 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
                             )),
                   ),
                   if ((styleDetailsController
-                                  .model.value.data?.styleDetails?.length ??
-                              0) >
-                          0) DetailsWidget(width) else Container(
-                  ),
+                              .model.value.data?.styleDetails?.length ??
+                          0) >
+                      0)
+                    DetailsWidget(width)
+                  else
+                    Container(),
                 ],
               ),
             ),
@@ -194,53 +202,69 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
           padding: EdgeInsets.all(10.sp),
           child: ClipRRect(
               borderRadius: BorderRadius.circular(20.sp),
-              child:
-    Utils.loadNetworkImage1(url:selectedImage,mHeight: 180.sp,mWidth: width,fit: BoxFit.cover)
-             /* Image.asset(
+              child: Utils.loadNetworkImage1(
+                  url: selectedImage,
+                  mHeight: 180.sp,
+                  mWidth: width,
+                  fit: BoxFit.cover)
+              /* Image.asset(
                 selectedImage,
                 height: 180.sp,
                 width: width,
                 fit: BoxFit.cover,
-              )*/),
+              )*/
+              ),
         ),
         Utils.addGap(10),
         Container(
           height: 80.sp,
           child: ListView.builder(
-              itemCount: styleDetailsController.model.value.data?.styleDetails?[0].imageDetails?.length,
+              itemCount: styleDetailsController
+                  .model.value.data?.styleDetails?[0].imageDetails?.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
-                    selectedImage = styleDetailsController.model.value.data?.styleDetails?[0].imageDetails?[index].imageName??"";
+                    selectedImage = styleDetailsController.model.value.data
+                            ?.styleDetails?[0].imageDetails?[index].imageName ??
+                        "";
                     setState(() {});
                   },
                   child: Container(
                     margin: EdgeInsets.only(left: 10.sp),
                     decoration: BoxDecoration(
                       border: Border.all(
-                          color: selectedImage == styleDetailsController.model.value.data?.styleDetails?[0].imageDetails?[index]
+                          color: selectedImage ==
+                                  styleDetailsController.model.value.data
+                                      ?.styleDetails?[0].imageDetails?[index]
                               ? Colors.black
                               : Colors.white60,
                           width: 2.sp),
                       borderRadius: BorderRadius.circular(20.sp),
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20.sp),
-                      child:
-                      Utils.loadNetworkImage(url: "${styleDetailsController.model.value.data?.styleDetails?[0].imageDetails?[index].imageName??""}",mHeight: 50.sp,mWidth: 80.sp,fit: BoxFit.cover)
-                      /*Image.asset(
+                        borderRadius: BorderRadius.circular(20.sp),
+                        child: Utils.loadNetworkImage(
+                            url:
+                                "${styleDetailsController.model.value.data?.styleDetails?[0].imageDetails?[index].imageName ?? ""}",
+                            mHeight: 50.sp,
+                            mWidth: 80.sp,
+                            fit: BoxFit.cover)
+                        /*Image.asset(
 
                         height: 50.sp,
                         width: 80.sp,
                         fit: BoxFit.cover,
                       ),*/
-                    ),
+                        ),
                   ))),
         ),
         Utils.addGap(16),
         GestureDetector(
           onTap: () {
-            Get.toNamed(Routes.addNotes);
+            Get.to(() => AddNotesScreen(
+                  styleCode: styleDetailsController
+                      .model.value.data?.styleDetails?[0].llcAppStyleCode,
+                ));
           },
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.sp),
@@ -338,17 +362,14 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
                           "${styleDetailsController.model.value.data?.styleDetails?[0].styleRemarks ?? ""}(${styleDetailsController.model.value.data?.styleDetails?[0].subCategory ?? ""})",
                         ),
                         Utils.addGap(5),
-
                         Utils.normalText(
                           "Gross weight - ${styleDetailsController.model.value.data?.styleDetails?[0].grossWt ?? ""}",
                         ),
                         Utils.addGap(5),
-
                         Utils.normalText(
                           "Ring size - ${styleDetailsController.model.value.data?.styleDetails?[0].ringSize ?? 0.0}",
                         ),
                         Utils.addGap(5),
-
                         Text(
                           "Cross wt - XXXX",
                           textAlign: TextAlign.center,
@@ -506,8 +527,8 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
                         padding: EdgeInsets.all(0.sp),
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
-                        itemCount: styleDetailsController
-                            .model.value.data?.styleDetails?[0].stoneDetails?.length,
+                        itemCount: styleDetailsController.model.value.data
+                            ?.styleDetails?[0].stoneDetails?.length,
                         itemBuilder: (context, stoneDetailsIndex) => Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
@@ -602,8 +623,8 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
                         padding: EdgeInsets.all(0.sp),
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
-                        itemCount: styleDetailsController
-                            .model.value.data?.styleDetails?[0].findingDetails?.length,
+                        itemCount: styleDetailsController.model.value.data
+                            ?.styleDetails?[0].findingDetails?.length,
                         itemBuilder: (context, stoneDetailsIndex) => Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
@@ -627,7 +648,6 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
                                   Utils.normalText(
                                     "Process Name - ${styleDetailsController.model.value.data?.styleDetails?[0].chargableDetails?[stoneDetailsIndex].processName ?? ""}",
                                   ),
-
                                 ]))),
                   ),
                 ],
@@ -683,8 +703,8 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
                         padding: EdgeInsets.all(0.sp),
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
-                        itemCount: styleDetailsController
-                            .model.value.data?.styleDetails?[0].alloyDetails?.length,
+                        itemCount: styleDetailsController.model.value.data
+                            ?.styleDetails?[0].alloyDetails?.length,
                         itemBuilder: (context, stoneDetailsIndex) => Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),

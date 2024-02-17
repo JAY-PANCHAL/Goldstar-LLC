@@ -5,6 +5,7 @@ import 'package:goldstarllc/common/utils/Styles.dart';
 import 'package:goldstarllc/common/utils/color_constants.dart';
 import 'package:goldstarllc/common/utils/utility.dart';
 import 'package:goldstarllc/controller/dashboard_controller.dart';
+import 'package:goldstarllc/network/model/loginmodel.dart';
 import 'package:goldstarllc/routes/app_pages.dart';
 
 import '../../common/utils/dimensions.dart';
@@ -20,14 +21,23 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   final DashboardController dashboardController =
       Get.put(DashboardController());
+  LoginModel loginModel = LoginModel();
 
   @override
   void initState() {
 /*
     _splashController.getTokenApi(context);
 */
+    getData();
 
     super.initState();
+  }
+
+  getData() async {
+    loginModel = await Utils.getLoginData();
+
+    print(loginModel.data?.userName);
+    setState(() {});
   }
 
   @override
@@ -50,6 +60,22 @@ class _DashboardState extends State<Dashboard> {
           AppIcons.goldstar,
           height: kToolbarHeight - 10, /*width: 150.sp*/
         ),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Utils.getLogoutDialog(context);
+              /*  dashboardController.storageService.clearAllData();
+              Get.offAllNamed(Routes.splash);*/
+            },
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Icon(
+                Icons.logout,
+                color: AppColors.black,
+              ),
+            ),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         elevation: 1,
@@ -69,7 +95,6 @@ class _DashboardState extends State<Dashboard> {
           color: AppColors.white,
         ),*/
       ),
-
       body: Container(
           height: Dimensions.screenHeight,
           width: Dimensions.screenWidth,
@@ -80,10 +105,10 @@ class _DashboardState extends State<Dashboard> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Utils.addGap(30),
-              Text("Hello User, ",
+              Text("Hello ${loginModel.data?.userName ?? "user"},",
                   style: Styles.textFontRegular(
-                      size: 16, weight: FontWeight.w400)),
-              Utils.addGap(10),
+                      size: 16, weight: FontWeight.w600)),
+              Utils.addGap(20),
               InkWell(
                 onTap: () {
                   print("search clicked");
@@ -148,9 +173,9 @@ class _DashboardState extends State<Dashboard> {
               ),
               Utils.addGap(40),
               GestureDetector(
-                  onTap: (){
-                    Get.toNamed(Routes.notesList);
-                  },
+                onTap: () {
+                  Get.toNamed(Routes.notesList);
+                },
                 child: Container(
                     width: width,
                     decoration: BoxDecoration(

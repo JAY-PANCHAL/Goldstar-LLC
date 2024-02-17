@@ -1,8 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:goldstarllc/common/utils/Styles.dart';
-import 'package:goldstarllc/common/utils/image_paths.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:connectivity/connectivity.dart';
@@ -13,9 +10,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:goldstarllc/common/utils/Styles.dart';
+import 'package:goldstarllc/common/utils/image_paths.dart';
 import 'package:goldstarllc/common/utils/storage_service.dart';
 import 'package:goldstarllc/network/model/loginmodel.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../routes/app_pages.dart';
@@ -90,18 +90,16 @@ class Utils {
             curve: Interval(0, 1, curve: Curves.linear),
           )),
         ),*/
-        child:  LoadingIndicator(
-          indicatorType:Indicator.ballPulseRise ,
+        child: LoadingIndicator(
+          indicatorType: Indicator.ballPulseRise,
           colors: _kDefaultRainbowColors,
           strokeWidth: 4.0,
-
-          pathBackgroundColor:
-          Colors.black,
+          pathBackgroundColor: Colors.black,
         ),
       ),
     );
-
   }
+
   static const List<Color> _kDefaultRainbowColors = const [
     Colors.blue,
     Colors.indigo,
@@ -167,13 +165,13 @@ class Utils {
       ),
     );
   }
+
   static Widget normalText(String text) {
-    return  Text(
-     text,
+    return Text(
+      text,
       // "14 KT Yellow Gold Ring (Sub category)",
       textAlign: TextAlign.center,
-      style: Styles.textFontRegular(
-          size: 14, weight: FontWeight.w400),
+      style: Styles.textFontRegular(size: 14, weight: FontWeight.w400),
     );
   }
 
@@ -191,11 +189,12 @@ class Utils {
         ),
       ),
       placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-      errorWidget: (context, url, error) => Image.asset( AppIcons.image2,fit: BoxFit.cover,),
+      errorWidget: (context, url, error) => Image.asset(
+        AppIcons.image2,
+        fit: BoxFit.cover,
+      ),
     );
   }
-
-
 
   static Widget loadNetworkImage1({url, mWidth, fit, mHeight}) {
     return CachedNetworkImage(
@@ -211,7 +210,10 @@ class Utils {
         ),
       ),
       placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-      errorWidget: (context, url, error) => Image.asset( AppIcons.image2,fit: BoxFit.cover,),
+      errorWidget: (context, url, error) => Image.asset(
+        AppIcons.image2,
+        fit: BoxFit.cover,
+      ),
     );
   }
 
@@ -280,7 +282,7 @@ class Utils {
     }
   }
 
-  static Future<bool> isLoggedIn() async   {
+  static Future<bool> isLoggedIn() async {
     var isloggedInPref =
         await StorageService.to.getString(AppConstants.loginPref);
     print(isloggedInPref);
@@ -296,17 +298,23 @@ class Utils {
               title: Text('Are you sure you want to logout?'),
               actions: [
                 TextButton(
-                  child: Text(AppConstants.yes),
+                  child: Text(
+                    AppConstants.yes,
+                    style: TextStyle(color: Colors.black),
+                  ),
                   onPressed: () {
                     Navigator.of(Get.overlayContext!, rootNavigator: true)
                         .pop(AppConstants.logout);
                     //  Get.back();
-                    StorageService().clearData();
+                    StorageService().clearAllData();
                     Get.offNamedUntil(Routes.splash, (route) => false);
                   },
                 ),
                 TextButton(
-                  child: Text(AppConstants.no),
+                  child: Text(
+                    AppConstants.no,
+                    style: TextStyle(color: Colors.black),
+                  ),
                   onPressed: () {
                     Navigator.of(Get.overlayContext!, rootNavigator: true)
                         .pop(AppConstants.logout);
@@ -321,7 +329,10 @@ class Utils {
               title: Text('Are you sure you want to logout?'),
               actions: [
                 CupertinoDialogAction(
-                  child: Text(AppConstants.yes),
+                  child: Text(
+                    AppConstants.yes,
+                    style: TextStyle(color: Colors.black),
+                  ),
                   onPressed: () {
                     Navigator.of(Get.overlayContext!, rootNavigator: true)
                         .pop(AppConstants.logout);
@@ -330,7 +341,10 @@ class Utils {
                   },
                 ),
                 CupertinoDialogAction(
-                  child: Text(AppConstants.no),
+                  child: Text(
+                    AppConstants.no,
+                    style: TextStyle(color: Colors.black),
+                  ),
                   onPressed: () {
                     Navigator.of(Get.overlayContext!, rootNavigator: true)
                         .pop(AppConstants.logout);
@@ -342,7 +356,7 @@ class Utils {
           );
   }
 
-  static void getDeleteDialog(context) {
+  static void getDeleteDialog(context, onpressed) {
     Platform.isAndroid
         ? Get.dialog(
             AlertDialog(
@@ -354,13 +368,12 @@ class Utils {
                     AppConstants.yes,
                     style: TextStyle(color: Colors.black),
                   ),
-                  onPressed: () {
+                  onPressed:
+                      onpressed /*() {
                     Navigator.of(Get.overlayContext!, rootNavigator: true)
                         .pop(AppConstants.logout);
-                    //  Get.back();
-                    // StorageService().clearData();
-                    // Get.offNamedUntil(Routes.splash, (route) => false);
-                  },
+                  }*/
+                  ,
                 ),
                 TextButton(
                   child: Text(
