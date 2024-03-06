@@ -32,11 +32,11 @@ class Data {
 
   Data(
       {this.userCode,
-        this.userName,
-        this.password,
-        this.sessionCode,
-        this.token,
-        this.mindCubeKey});
+      this.userName,
+      this.password,
+      this.sessionCode,
+      this.token,
+      this.mindCubeKey});
 
   Data.fromJson(Map<String, dynamic> json) {
     userCode = json['UserCode'];

@@ -30,6 +30,7 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
   bool isExpanded3 = false;
   bool isExpanded4 = false;
   bool isExpanded5 = false;
+  bool isExpanded6 = false;
 
 //FRTH6132GS
 // FRQT4914G
@@ -388,7 +389,7 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
             child: Container(
               padding: EdgeInsets.all(16.sp),
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 1.sp),
+                  border: Border.all(color: Colors.brown, width: 1.sp),
                   /*   boxShadow: [
                       BoxShadow(
                           color: AppColors.black53.withOpacity(0.1),
@@ -419,7 +420,7 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
                         },
                         child: Icon(
                           Icons.arrow_drop_down_circle_rounded,
-                          color: Colors.grey,
+                          color: Colors.brown,
                           size: 40,
                         ),
                       )
@@ -458,7 +459,7 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
                                     ),
                                     Utils.addGap(5),
                                     Utils.normalText(
-                                      "Finness - ${styleDetailsController.model.value.data?.styleDetails?[0].metalDetails?[metalIndex].fineness ?? ""}",
+                                      "Purity - ${styleDetailsController.model.value.data?.styleDetails?[0].metalDetails?[metalIndex].fineness ?? ""}",
                                     ),
                                     Utils.addGap(5),
                                     Utils.normalText(
@@ -566,7 +567,71 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
                                   ),
                                   Utils.addGap(5),
                                   Utils.normalText(
-                                    "Stone Quantity - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].diaWt ?? ""}",
+                                    "Dia wt - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].diaWt ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Metal Sr No - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].metalSrNo ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Size - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].size ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "MM Length - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].mmLength ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "MM Breadth - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].mmLength ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Quantity - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].stoneQty ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Setting Type - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].settingType ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Setting Mode - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].settingMode ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Prod. Setting Type - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].settingType ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Prod. Setting Mode - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].settingMode ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Is Center Stone - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].isCenterStone ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Min Dia wt - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].minDiaWt ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Min Dia Stones - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].minDiaStones ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Max Dia Stones - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].maxDiaStones ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Removable Stone - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].removableStone ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Exact Size - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].exactSize ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Stone Remarks - ${styleDetailsController.model.value.data?.styleDetails?[0].stoneDetails?[stoneDetailsIndex].stoneRemarks ?? ""}",
                                   ),
                                 ]))),
                   ),
@@ -654,20 +719,20 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
               ),
             )),
         Utils.addGap(10),
-        Padding(
+        /* Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.sp),
             child: Container(
               padding: EdgeInsets.all(16.sp),
               width: width,
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.purple, width: 1.sp),
-                  /*   boxShadow: [
+                  */ /*   boxShadow: [
                       BoxShadow(
                           color: AppColors.black53.withOpacity(0.1),
                           offset: Offset(0, 0),
                           spreadRadius: 2.sp,
                           blurRadius: 5.0.sp)
-                    ],*/
+                    ],*/ /*
                   color: Colors.white10,
                   borderRadius: BorderRadius.circular(15)),
               child: Column(
@@ -731,6 +796,102 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
                                   Utils.addGap(5),
                                   Utils.normalText(
                                     "Fineness - ${styleDetailsController.model.value.data?.styleDetails?[0].alloyDetails?[stoneDetailsIndex].fineness ?? ""}",
+                                  ),
+                                ]))),
+                  ),
+                ],
+              ),
+            )),
+        Utils.addGap(10),*/
+        Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.sp),
+            child: Container(
+              padding: EdgeInsets.all(16.sp),
+              width: width,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.teal, width: 1.sp),
+                  /*   boxShadow: [
+                      BoxShadow(
+                          color: AppColors.black53.withOpacity(0.1),
+                          offset: Offset(0, 0),
+                          spreadRadius: 2.sp,
+                          blurRadius: 5.0.sp)
+                    ],*/
+                  color: Colors.white10,
+                  borderRadius: BorderRadius.circular(15)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Finding Details",
+                        textAlign: TextAlign.center,
+                        style: Styles.textFontRegular(
+                            size: 16, weight: FontWeight.w500),
+                      ),
+                      Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          isExpanded6 = !isExpanded6;
+                          setState(() {});
+                        },
+                        child: Icon(
+                          Icons.arrow_drop_down_circle_rounded,
+                          color: Colors.teal,
+                          size: 40,
+                        ),
+                      )
+                    ],
+                  ),
+                  Visibility(
+                    visible: isExpanded6,
+                    child: ListView.builder(
+                        padding: EdgeInsets.all(0.sp),
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: styleDetailsController.model.value.data
+                            ?.styleDetails?[0].findingDetails?.length,
+                        itemBuilder: (context, findingDetails) => Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.teal.withOpacity(0.3),
+                            ),
+                            margin: EdgeInsets.symmetric(vertical: 8.sp),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 12.sp, horizontal: 12.sp),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Utils.normalText(
+                                    " ${findingDetails + 1} )",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Finding - ${styleDetailsController.model.value.data?.styleDetails?[0].findingDetails?[findingDetails].finding ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "MetalKT - ${styleDetailsController.model.value.data?.styleDetails?[0].findingDetails?[findingDetails].metalKt ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Weight - ${styleDetailsController.model.value.data?.styleDetails?[0].findingDetails?[findingDetails].weight ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Quantity - ${styleDetailsController.model.value.data?.styleDetails?[0].findingDetails?[findingDetails].qty ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Rate - ${styleDetailsController.model.value.data?.styleDetails?[0].findingDetails?[findingDetails].rate ?? ""}",
+                                  ),
+                                  Utils.addGap(5),
+                                  Utils.normalText(
+                                    "Finding Cost - ${styleDetailsController.model.value.data?.styleDetails?[0].findingDetails?[findingDetails].findingcost ?? ""}",
                                   ),
                                 ]))),
                   ),
