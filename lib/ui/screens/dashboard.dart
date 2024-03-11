@@ -112,7 +112,7 @@ class _DashboardState extends State<Dashboard> {
               InkWell(
                 onTap: () {
                   print("search clicked");
-                  Get.toNamed(Routes.searchStyleEntry);
+                  Get.offAllNamed(Routes.searchStyleEntry);
                 },
                 child: Container(
                     width: width,

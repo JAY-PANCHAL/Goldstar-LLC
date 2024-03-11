@@ -141,21 +141,21 @@ class LoginScreenState extends State<LoginScreen> {
                           labelText: "Password",
                         ),
                         Utils.addGap(40),
-                        GestureDetector(
-                            child: Text(
-                          "Terms & Conditions",
-                          style: Styles.textFontRegular(
-                              size: 10.sp,
-                              weight: FontWeight.w400,
-                              color: Colors.blue),
-                        )),
+                        // GestureDetector(
+                        //     child: Text(
+                        //   "Terms & Conditions",
+                        //   style: Styles.textFontRegular(
+                        //       size: 10.sp,
+                        //       weight: FontWeight.w400,
+                        //       color: Colors.blue),
+                        // )),
                         RoundedButton(
                             buttonText: AppConstants.login.toUpperCase(),
                             height: 44,
                             width: width,
                             onpressed: () {
-                             // Get.offAllNamed(Routes.dashboard);
-                            loginScreenController.validate(context);
+                              // Get.offAllNamed(Routes.dashboard);
+                              loginScreenController.validate(context);
                             }),
                       ],
                     ),
@@ -163,8 +163,7 @@ class LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-          )
-      );
+          ));
     });
   }
 }

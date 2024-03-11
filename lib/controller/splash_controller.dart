@@ -1,6 +1,5 @@
 import 'dart:async';
 
-
 import 'package:get/get.dart';
 
 import '../common/service_locator.dart';
@@ -25,11 +24,21 @@ class SplashController extends BaseController {
     var _duration = Duration(
       seconds: Dimensions.screenLoadTime,
     );
-      Timer(_duration, () async {
-        Get.offNamedUntil(Routes.login, (route) => false);
+    Timer(_duration, () async {
+      checkToken();
+      // Get.offNamedUntil(Routes.login, (route) => false);
+    });
+  }
 
-
-      });
+  Future checkToken() async {
+    String token = await storageService.getString(AppConstants.tokenPr);
+    if (token == "" || token == "tokenPr") {
+      print("This is token:$token");
+      Get.offAllNamed(Routes.login);
+    } else {
+      print("This is token:$token");
+      Get.offAllNamed(Routes.dashboard);
+    }
   }
 
 /*  Future getTokenApi(context) async {

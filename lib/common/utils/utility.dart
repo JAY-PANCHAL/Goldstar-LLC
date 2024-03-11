@@ -211,7 +211,7 @@ class Utils {
       ),
       placeholder: (context, url) => Center(child: CircularProgressIndicator()),
       errorWidget: (context, url, error) => Image.asset(
-        AppIcons.image2,
+        AppIcons.noImage,
         fit: BoxFit.cover,
       ),
     );

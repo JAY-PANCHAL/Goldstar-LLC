@@ -6,8 +6,10 @@ import 'package:goldstarllc/common/CommanTextField.dart';
 import 'package:goldstarllc/common/utils/color_constants.dart';
 import 'package:goldstarllc/common/utils/utility.dart';
 import 'package:goldstarllc/controller/scanner_controller.dart';
+import 'package:goldstarllc/main.dart';
+import 'package:goldstarllc/routes/app_pages.dart';
+import 'package:goldstarllc/ui/screens/style_detail_screen.dart';
 import 'package:scan/scan.dart';
-
 
 class ScannerScreen extends StatefulWidget {
   const ScannerScreen({super.key});
@@ -17,7 +19,7 @@ class ScannerScreen extends StatefulWidget {
 }
 
 class _ScannerScreenState extends State<ScannerScreen> {
-  ScannerController scannerController = Get.put(ScannerController());
+  // ScannerController scannerController = Get.put(ScannerController());
   ScanController controller = ScanController();
   String qrcode = 'Unknown';
 
@@ -40,8 +42,12 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 scanAreaScale: .7,
                 scanLineColor: AppColors.white,
                 onCapture: (data) {
-                  Utils.showToast(data);
-                  // do something
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            SearchDetailsScreen(data: data.toString()),
+                      ));
                 },
               ),
               Positioned(

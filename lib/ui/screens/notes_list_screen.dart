@@ -204,145 +204,169 @@ class _NotesListScreenState extends State<NotesListScreen> {
                 ),*/
                 Expanded(
                     child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0.sp),
-                  child: ListView.builder(
-                    itemCount: notesController.notesList.length,
-                    itemBuilder: (context, index) => Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      margin: EdgeInsets.symmetric(vertical: 10.sp),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            /*   boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 5,
-                                    blurRadius: 7,
-                                    offset: Offset(0, 3), // changes position of shadow
-                                  ),
-                                ],*/
-                            borderRadius: BorderRadius.circular(12.sp),
-                            color: AppColors.usableGray),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 12.sp),
-                                  child: Text(
-                                    "${notesController.notesList[index].title}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 14.sp,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                                Spacer(),
-                                IconButton(
-                                    alignment: Alignment.topRight,
-                                    onPressed: () {
-                                      Utils.getDeleteDialog(context, () {
-                                        notesController.deleteNotesApi(
-                                            context,
-                                            notesController
-                                                .notesList[index].noteCode);
-                                        Navigator.of(Get.overlayContext!,
-                                                rootNavigator: true)
-                                            .pop();
-                                      });
-                                    },
-                                    icon: Icon(
-                                      Icons.delete_outline,
-                                      color: Colors.red,
-                                    ))
-                              ],
-                            ),
-                            Utils.addGap(10),
-                            Row(
-                              children: List.generate(
-                                  700 ~/ 10,
-                                  (index) => Expanded(
-                                        child: Container(
-                                          color: index % 2 == 0
-                                              ? Colors.transparent
-                                              : Colors.grey,
-                                          height: 2,
-                                        ),
-                                      )),
-                            ),
-                            Utils.addGap(20),
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(
-                                        12.sp, 0.sp, 10.sp, 0),
+                  padding:
+                      EdgeInsets.only(bottom: 50.sp, left: 10.sp, right: 10.sp),
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      notesController.notesApi(context);
+                    },
+                    color: AppColors.appYellow,
+                    child: ListView.builder(
+                      itemCount: notesController.notesList.length,
+                      itemBuilder: (context, index) => Card(
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        margin: EdgeInsets.symmetric(vertical: 10.sp),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              /*   boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: Offset(0, 3), // changes position of shadow
+                                    ),
+                                  ],*/
+                              borderRadius: BorderRadius.circular(12.sp),
+                              color: AppColors.usableGray),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 12.sp),
                                     child: Text(
-                                      notesController
-                                              .notesList[index].description ??
-                                          "",
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 10,
-                                      textAlign: TextAlign.left,
+                                      "${notesController.notesList[index].title}",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 14.sp,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10.sp,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 12.sp),
-                                  child: Text(
-                                    "Date ${notesController.notesList[index].entryDate?.substring(0, 10)}, ${notesController.notesList[index].entryDate?.substring(11, 16)}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 12.sp,
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.w600),
+                                  Spacer(),
+                                  // IconButton(
+                                  //     alignment: Alignment.topRight,
+                                  //     onPressed: () {
+                                  //       Utils.getDeleteDialog(context, () {
+                                  //         notesController.deleteNotesApi(
+                                  //             context,
+                                  //             notesController
+                                  //                 .notesList[index].noteCode);
+                                  //         Navigator.of(Get.overlayContext!,
+                                  //                 rootNavigator: true)
+                                  //             .pop();
+                                  //       });
+                                  //     },
+                                  //     icon: Icon(
+                                  //       Icons.delete_outline,
+                                  //       color: Colors.red,
+                                  //     ))
+                                ],
+                              ),
+                              Utils.addGap(10),
+                              Row(
+                                children: List.generate(
+                                    700 ~/ 10,
+                                    (index) => Expanded(
+                                          child: Container(
+                                            color: index % 2 == 0
+                                                ? Colors.transparent
+                                                : Colors.grey,
+                                            height: 2,
+                                          ),
+                                        )),
+                              ),
+                              Utils.addGap(20),
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          12.sp, 0.sp, 10.sp, 0),
+                                      child: Text(
+                                        notesController
+                                                .notesList[index].description ??
+                                            "",
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 10,
+                                        textAlign: TextAlign.left,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                Spacer(),
-                                IconButton(
-                                    onPressed: () {
-                                      Get.to(AddNotesScreen(
-                                        notesDetails:
-                                            notesController.notesList[index],
-                                      ))?.then((value) {
-                                        getData();
-                                      });
-                                    },
-                                    icon: Icon(
-                                      Icons.edit,
-                                      // color: Colors.black,
-                                    )),
-                                IconButton(
-                                    onPressed: () {
-                                      launchGmail();
-                                    },
-                                    icon: Icon(
-                                      Icons.mail,
-                                    )),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.sms,
-                                    )),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10.sp,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 12.sp),
+                                    child: Text(
+                                      "Date ${notesController.notesList[index].entryDate?.substring(0, 10)}, ${notesController.notesList[index].entryDate?.substring(11, 16)}",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 12.sp,
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  IconButton(
+                                      onPressed: () {
+                                        Get.to(AddNotesScreen(
+                                          notesDetails:
+                                              notesController.notesList[index],
+                                        ))?.then((value) {
+                                          getData();
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Icons.edit,
+                                        // color: Colors.black,
+                                      )),
+                                  IconButton(
+                                      onPressed: () {
+                                        Utils.getDeleteDialog(context, () {
+                                          notesController.deleteNotesApi(
+                                              context,
+                                              notesController
+                                                  .notesList[index].noteCode);
+                                          Navigator.of(Get.overlayContext!,
+                                                  rootNavigator: true)
+                                              .pop();
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Icons.delete_outline,
+                                        color: Colors.red,
+                                      ))
+                                  // IconButton(
+                                  //     onPressed: () {
+                                  //       launchGmail();
+                                  //     },
+                                  //     icon: Icon(
+                                  //       Icons.mail,
+                                  //     )),
+                                  // IconButton(
+                                  //     onPressed: () {},
+                                  //     icon: Icon(
+                                  //       Icons.sms,
+                                  //     )),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

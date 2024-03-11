@@ -11,10 +11,10 @@ import 'package:goldstarllc/network/model/notesmodel.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class AddNotesScreen extends StatefulWidget {
-  final int? styleCode;
+  final String? styleNo;
   final NotesDetails? notesDetails;
 
-  const AddNotesScreen({super.key, this.styleCode, this.notesDetails});
+  const AddNotesScreen({super.key, this.styleNo, this.notesDetails});
 
   @override
   State<AddNotesScreen> createState() => _AddNotesScreenState();
@@ -25,8 +25,8 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
 
   @override
   void initState() {
-    if (widget.styleCode != null) {
-      addNotesController.styleCodeController.text = "${widget.styleCode}";
+    if (widget.styleNo != null) {
+      addNotesController.styleCodeController.text = "${widget.styleNo}";
     }
 
     if (widget.notesDetails != null) {
@@ -131,7 +131,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                       ),
                     ),
                     Visibility(
-                      visible: widget.styleCode != null,
+                      visible: widget.styleNo != null,
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.sp),
                         child: Column(

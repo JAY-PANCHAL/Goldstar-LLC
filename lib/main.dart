@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:goldstarllc/controller/scanner_controller.dart';
 import 'package:goldstarllc/routes/app_pages.dart';
 
 import 'common/dependency_injection.dart';
@@ -12,6 +13,7 @@ import 'common/utils/strings.dart';
 
 final GlobalKey<NavigatorState> navigatorKey =
     GlobalKey<NavigatorState>(debugLabel: "navigator");
+ScannerController scannerController = Get.put(ScannerController());
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +28,8 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   //HttpOverrides.global = MyHttpOverrides();
 
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: GoldStarLLCApp()));
+  runApp(
+      MaterialApp(debugShowCheckedModeBanner: false, home: GoldStarLLCApp()));
 }
 
 class GoldStarLLCApp extends StatefulWidget {
@@ -47,9 +50,7 @@ class GoldStarLLCAppState extends State<GoldStarLLCApp> {
     ScreenUtil.init(context);
 
     return GetMaterialApp(
-      theme: ThemeData(
-        useMaterial3: false
-      ),
+      theme: ThemeData(useMaterial3: false),
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.root,
       getPages: AppPages.routes,
