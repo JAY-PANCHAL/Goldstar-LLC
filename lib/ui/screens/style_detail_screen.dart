@@ -5,7 +5,6 @@ import 'package:goldstarllc/common/utils/Styles.dart';
 import 'package:goldstarllc/common/utils/color_constants.dart';
 import 'package:goldstarllc/common/utils/utility.dart';
 import 'package:goldstarllc/controller/search_style_controller.dart';
-import 'package:goldstarllc/main.dart';
 import 'package:goldstarllc/routes/app_pages.dart';
 import 'package:goldstarllc/ui/screens/add_notes_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -14,6 +13,7 @@ import '../../common/utils/image_paths.dart';
 
 class SearchDetailsScreen extends StatefulWidget {
   String? data;
+
   SearchDetailsScreen({Key? key, this.data = ""}) : super(key: key);
 
   @override
@@ -82,6 +82,7 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
               leading: GestureDetector(
                   onTap: () {
                     Get.back();
+                    print("back clicked");
                   },
                   child: Icon(
                     Icons.arrow_back_ios,
