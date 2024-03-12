@@ -30,7 +30,7 @@ class AddNotesController extends BaseController {
   //   }
   // }
 
-  validateLoginControllers(BuildContext context) {
+  validateLoginControllers(BuildContext context, String styleCode) {
     Get.focusScope?.unfocus();
 
     if (titleController.text.isEmpty) {
@@ -38,17 +38,17 @@ class AddNotesController extends BaseController {
     } else if (descriptionController.text.isEmpty) {
       Utils.showToast(AppConstants.errorDescription);
     } else {
-      addNotesApi(context);
+      addNotesApi(context, styleCode);
     }
   }
 
-  Future addNotesApi(context) async {
+  Future addNotesApi(context, styleCode) async {
     var token = await storageService.getString(AppConstants.tokenPr);
     print(token);
 
     var params = {
       AppConstants.noteCodeK: noteCode.value,
-      AppConstants.styleCodeK: styleCodeController.text,
+      AppConstants.styleCodeK: styleCode, //styleCodeController.text,
       AppConstants.titleK: titleController.text,
       AppConstants.descriptionK: descriptionController.text,
     };
@@ -80,7 +80,7 @@ class AddNotesController extends BaseController {
     }, onError: (e) {
       isLoading.value = false;
       Utils.showSnackBar(e.toString(), context, () {
-        addNotesApi(context);
+        addNotesApi(context, styleCode);
       });
     });
   }

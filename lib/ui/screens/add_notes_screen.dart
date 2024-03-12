@@ -14,7 +14,10 @@ class AddNotesScreen extends StatefulWidget {
   final String? styleNo;
   final NotesDetails? notesDetails;
 
-  const AddNotesScreen({super.key, this.styleNo, this.notesDetails});
+  final String? styleCode;
+
+  const AddNotesScreen(
+      {super.key, this.styleNo, this.notesDetails, this.styleCode});
 
   @override
   State<AddNotesScreen> createState() => _AddNotesScreenState();
@@ -304,8 +307,8 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                                 addNotesController.noteCode.value =
                                     "${widget.notesDetails?.noteCode}";
                               }
-                              addNotesController
-                                  .validateLoginControllers(context);
+                              addNotesController.validateLoginControllers(
+                                  context, widget.styleCode ?? "");
                             },
                             style: ButtonStyle(
                                 shape: MaterialStatePropertyAll(
