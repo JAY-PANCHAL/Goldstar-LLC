@@ -42,12 +42,13 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 scanAreaScale: .7,
                 scanLineColor: AppColors.white,
                 onCapture: (data) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            SearchDetailsScreen(data: data.toString()),
-                      ));
+                  Get.off(()=>SearchDetailsScreen(data: data.toString()));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) =>
+                  //           SearchDetailsScreen(data: data.toString()),
+                  //     ));
                 },
               ),
               Positioned(

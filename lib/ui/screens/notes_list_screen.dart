@@ -45,7 +45,19 @@ class _NotesListScreenState extends State<NotesListScreen> {
   }
 
   void getData() async {
-    await notesController.notesApi(context);
+
+
+    if(await Utils.isConnected()) {
+      await notesController.notesApi(context);
+
+    }else{
+      Utils.showToast("No Internet");
+
+    }
+
+
+
+
   }
 
   @override
@@ -208,7 +220,15 @@ class _NotesListScreenState extends State<NotesListScreen> {
                       EdgeInsets.only(bottom: 50.sp, left: 10.sp, right: 10.sp),
                   child: RefreshIndicator(
                     onRefresh: () async {
-                      notesController.notesApi(context);
+
+                      getData();
+                      //notesController.notesApi(context);
+
+
+
+
+
+
                     },
                     color: AppColors.appYellow,
                     child: ListView.builder(
@@ -238,7 +258,8 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: 12.sp),
+                                    padding:
+                                        EdgeInsets.only(left: 12.sp, top: 10),
                                     child: Text(
                                       "${notesController.notesList[index].title}",
                                       textAlign: TextAlign.center,
@@ -337,16 +358,34 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                       )),
                                   IconButton(
                                       onPressed: () {
-                                        Utils.getDeleteDialog(context, () {
-                                          notesController.deleteNotesApi(
-                                              context,
-                                              notesController
-                                                  .notesList[index].noteCode);
-                                          Navigator.of(Get.overlayContext!,
-                                                  rootNavigator: true)
-                                              .pop();
+                                        Utils.getDeleteDialog(context, () async {
+
+
+      bool isconnected=await Utils.isConnected();
+
+      if(isconnected) {
+
+        notesController.deleteNotesApi(
+            context,
+            notesController
+                .notesList[index].noteCode);
+        Navigator.of(Get.overlayContext!,
+            rootNavigator: true)
+            .pop();
+
+      }else{
+        Utils.showToast("No Internet");
+        Navigator.of(Get.overlayContext!,
+            rootNavigator: true)
+            .pop();
+      }
+
+
                                         });
-                                      },
+
+
+
+                                        },
                                       icon: Icon(
                                         Icons.delete_outline,
                                         color: Colors.red,

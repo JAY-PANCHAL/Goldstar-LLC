@@ -22,12 +22,18 @@ class LoginController extends BaseController {
   var formKey = GlobalKey<FormState>();
   var isObscureText = true.obs;
 
-  void validate(BuildContext context) {
+  Future<void> validate(BuildContext context) async {
     final isValid = formKey.currentState?.validate();
     Get.focusScope?.unfocus();
     if (isValid != null) {
       if (isValid) {
-        loginAPI(context);
+      bool isconnected=await Utils.isConnected();
+        if(isconnected) {
+          loginAPI(context);
+    }   else{
+          Utils.showToast("No Internet");
+        }
+
       }
     }
   }
@@ -42,7 +48,10 @@ class LoginController extends BaseController {
       AppConstants.passwordK: passwordController.text,
       AppConstants.userNameK: nameController.text,
     };
+
     isLoading.value = true;
+
+
     await repo.loginAPi(params).then((value) async {
       if (value != null) {
         isLoading.value = false;

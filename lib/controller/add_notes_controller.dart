@@ -30,7 +30,7 @@ class AddNotesController extends BaseController {
   //   }
   // }
 
-  validateLoginControllers(BuildContext context, String styleCode) {
+  validateLoginControllers(BuildContext context, String styleCode) async {
     Get.focusScope?.unfocus();
 
     if (titleController.text.isEmpty) {
@@ -38,7 +38,15 @@ class AddNotesController extends BaseController {
     } else if (descriptionController.text.isEmpty) {
       Utils.showToast(AppConstants.errorDescription);
     } else {
-      addNotesApi(context, styleCode);
+
+      bool isconnected=await Utils.isConnected();
+
+      if(isconnected) {
+        addNotesApi(context, styleCode);
+      }else{
+        Utils.showToast("No Internet");
+      }
+
     }
   }
 

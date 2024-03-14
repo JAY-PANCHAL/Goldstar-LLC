@@ -7,7 +7,9 @@ import 'package:goldstarllc/network/model/loginmodel.dart';
 import 'package:goldstarllc/network/model/notesmodel.dart';
 import 'package:goldstarllc/network/model/style_details.dart';
 import '../../common/utils/storage_service.dart';
+import '../../common/utils/utility.dart';
 import 'getx_api.dart';
+import 'package:get/get.dart';
 
 class GetxRepository {
   final GetxApi getxApi;
@@ -28,22 +30,22 @@ class GetxRepository {
   }
 
   Future<StyelDetailsModel> styleDetails(params, token) async {
-    try {
-      final response = await getxApi.loadPostDataJsonType(
-          Endpoints.styleDetails, params, token);
-      //return ConfigModel.fromJson(response.data);
-      return StyelDetailsModel.fromJson(response.data);
-    } on DioExceptions catch (e) {
-      final errorMessage = DioExceptions.fromDioError(e as DioError).toString();
-      throw errorMessage;
-    }
+      try {
+        final response = await getxApi.loadPostDataJsonType(
+            Endpoints.styleDetails, params, token);
+        //return ConfigModel.fromJson(response.data);
+        return StyelDetailsModel.fromJson(response.data);
+      } on DioExceptions catch (e) {
+        final errorMessage = DioExceptions.fromDioError(e as DioError).toString();
+        throw errorMessage;
+      }
   }
 
   Future<NotesModel> notes(params, token) async {
     try {
       final response =
           await getxApi.loadPostDataJsonType(Endpoints.notes, params, token);
-      //return ConfigModel.fromJson(response.data);
+        //return ConfigModel.fromJson(response.data);
       return NotesModel.fromJson(response.data);
     } on DioExceptions catch (e) {
       final errorMessage = DioExceptions.fromDioError(e as DioError).toString();

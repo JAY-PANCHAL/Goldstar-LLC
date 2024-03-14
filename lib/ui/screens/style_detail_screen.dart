@@ -51,14 +51,41 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
   @override
   void initState() {
     print("search screen created");
+    getData();
     super.initState();
-    if (widget.data != "") {
-      styleDetailsController.styleDetailsScannerAPI(
-          context, widget.data.toString());
-      setState(() {});
-    }
   }
 
+
+  getData() async {
+
+    bool isconnected=await Utils.isConnected();
+
+
+    if(isconnected) {
+
+
+      if (widget.data != "") {
+
+        styleDetailsController.styleDetailsScannerAPI(
+            context, widget.data.toString());
+        setState(() {});
+
+
+      }
+
+
+
+
+    }   else{
+    Utils.showToast("No Internet");
+    }
+
+
+
+
+
+
+  }
   @override
   void dispose() {
     super.dispose();
@@ -118,10 +145,19 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
             ),
             body: RefreshIndicator(
               onRefresh: () async {
-                if (widget.data != "") {
-                  styleDetailsController.searchController.text = widget.data!;
-                  styleDetailsController.styleDetailsAPI(context);
-                }
+
+                bool isconnected=await Utils.isConnected();
+
+      if(isconnected) {
+        if (widget.data != "") {
+          styleDetailsController.searchController.text = widget.data!;
+          styleDetailsController.styleDetailsAPI(context);
+        }
+      }else{
+        Utils.showToast("No Internet");
+
+      }
+
               },
               color: AppColors.appYellow,
               child: SingleChildScrollView(
@@ -157,9 +193,19 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: "Type Style Query ..."),
-                                onFieldSubmitted: (value) {
-                                  styleDetailsController
-                                      .styleDetailsAPI(context);
+                                onFieldSubmitted: (value) async {
+                                  bool isconnected=await Utils.isConnected();
+
+                                  if(isconnected) {
+                                    if (widget.data != "") {
+                                      styleDetailsController.searchController.text = widget.data!;
+                                      styleDetailsController.styleDetailsAPI(context);
+                                    }
+                                  }else{
+                                    Utils.showToast("No Internet");
+                                  }
+                                  // styleDetailsController
+                                  //     .styleDetailsAPI(context);
                                 },
                               ),
                             ),

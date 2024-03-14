@@ -336,7 +336,8 @@ class Utils {
                   onPressed: () {
                     Navigator.of(Get.overlayContext!, rootNavigator: true)
                         .pop(AppConstants.logout);
-                    StorageService().clearData();
+                    //  Get.back();
+                    StorageService().clearAllData();
                     Get.offNamedUntil(Routes.splash, (route) => false);
                   },
                 ),
@@ -395,12 +396,7 @@ class Utils {
               actions: [
                 CupertinoDialogAction(
                   child: Text(AppConstants.yes),
-                  onPressed: () {
-                    Navigator.of(Get.overlayContext!, rootNavigator: true)
-                        .pop(AppConstants.logout);
-                    // StorageService().clearData();
-                    // Get.offNamedUntil(Routes.splash, (route) => false);
-                  },
+                  onPressed: onpressed,
                 ),
                 CupertinoDialogAction(
                   child: Text(AppConstants.no),
