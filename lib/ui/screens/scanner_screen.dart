@@ -12,7 +12,8 @@ import 'package:goldstarllc/ui/screens/style_detail_screen.dart';
 import 'package:scan/scan.dart';
 
 class ScannerScreen extends StatefulWidget {
-  const ScannerScreen({super.key});
+  final String isFrom;
+  const ScannerScreen({super.key,required this.isFrom});
 
   @override
   State<ScannerScreen> createState() => _ScannerScreenState();
@@ -42,7 +43,16 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 scanAreaScale: .7,
                 scanLineColor: AppColors.white,
                 onCapture: (data) {
+                  print("------");
+                  print(widget.isFrom);
+                if(widget.isFrom=="Dashboard"){
                   Get.off(()=>SearchDetailsScreen(data: data.toString()));
+                }else{
+                  Get.back(result:data );
+                }
+
+
+
                   // Navigator.push(
                   //     context,
                   //     MaterialPageRoute(

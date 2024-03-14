@@ -31,6 +31,7 @@ class StyleDetailsController extends BaseController {
     isLoading.value = true;
     await repo.styleDetails(params, token).then((value) async {
       if (value != null) {
+        model.value=StyelDetailsModel();
         model.value = value;
         if (model.value.statusCode == 200) {
           isLoading.value = false;
@@ -62,6 +63,7 @@ class StyleDetailsController extends BaseController {
     isLoading.value = true;
     await repo.styleDetails(params, token).then((value) async {
       if (value != null) {
+        model.value=StyelDetailsModel();
         model.value = value;
         if (model.value.statusCode == 200) {
           isLoading.value = false;

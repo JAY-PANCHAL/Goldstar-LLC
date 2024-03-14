@@ -224,11 +224,6 @@ class _NotesListScreenState extends State<NotesListScreen> {
                       getData();
                       //notesController.notesApi(context);
 
-
-
-
-
-
                     },
                     color: AppColors.appYellow,
                     child: ListView.builder(

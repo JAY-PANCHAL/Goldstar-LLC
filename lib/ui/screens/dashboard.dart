@@ -7,6 +7,7 @@ import 'package:goldstarllc/common/utils/utility.dart';
 import 'package:goldstarllc/controller/dashboard_controller.dart';
 import 'package:goldstarllc/network/model/loginmodel.dart';
 import 'package:goldstarllc/routes/app_pages.dart';
+import 'package:goldstarllc/ui/screens/scanner_screen.dart';
 
 import '../../common/utils/dimensions.dart';
 import '../../common/utils/image_paths.dart';
@@ -80,7 +81,8 @@ class _DashboardState extends State<Dashboard> {
       floatingActionButton: FloatingActionButton.extended(
         elevation: 1,
         onPressed: () {
-          Get.toNamed(Routes.scanner)?.then((value) {});
+          Get.to(()=>ScannerScreen(isFrom: "Dashboard",));
+         // Get.toNamed(Routes.scanner)?.then((value) {});
         },
         icon: Icon(
           Icons.qr_code_scanner_sharp,

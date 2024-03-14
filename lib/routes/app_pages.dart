@@ -31,10 +31,10 @@ class AppPages {
         name: Routes.searchStyleEntry,
         page: () => SearchDetailsScreen(),
         transition: Transition.rightToLeft),
-    GetPage(
-        name: Routes.scanner,
-        page: () => const ScannerScreen(),
-        transition: Transition.rightToLeft),
+    // GetPage(
+    //     name: Routes.scanner,
+    //     page: () => const ScannerScreen(),
+    //     transition: Transition.rightToLeft),
     GetPage(
         name: Routes.addNotes,
         page: () => AddNotesScreen(),

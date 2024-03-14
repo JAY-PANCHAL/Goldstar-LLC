@@ -7,6 +7,7 @@ import 'package:goldstarllc/common/utils/utility.dart';
 import 'package:goldstarllc/controller/search_style_controller.dart';
 import 'package:goldstarllc/routes/app_pages.dart';
 import 'package:goldstarllc/ui/screens/add_notes_screen.dart';
+import 'package:goldstarllc/ui/screens/scanner_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../common/utils/image_paths.dart';
@@ -52,6 +53,7 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
   void initState() {
     print("search screen created");
     getData();
+    //Utils.showToast(widget.data);
     super.initState();
   }
 
@@ -65,7 +67,7 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
 
 
       if (widget.data != "") {
-
+        styleDetailsController.searchController.text=widget.data??"";
         styleDetailsController.styleDetailsScannerAPI(
             context, widget.data.toString());
         setState(() {});
@@ -128,7 +130,13 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
             floatingActionButton: FloatingActionButton.extended(
               elevation: 1,
               onPressed: () {
-                Get.toNamed(Routes.scanner)?.then((value) {});
+                Get.to(()=>ScannerScreen(isFrom: "main",))?.then((value) {
+                  if(value!=null){
+                    styleDetailsController.searchController.text = value;
+                    styleDetailsController.styleDetailsAPI(context);
+                  }});
+
+//                Get.toNamed(Routes.scanner)?.then((value) {});
               },
               icon: Icon(
                 Icons.qr_code_scanner_sharp,
@@ -197,10 +205,13 @@ class _SearchDetailsScreenState extends State<SearchDetailsScreen> {
                                   bool isconnected=await Utils.isConnected();
 
                                   if(isconnected) {
-                                    if (widget.data != "") {
-                                      styleDetailsController.searchController.text = widget.data!;
+                                    if(styleDetailsController.searchController.text!=""){
                                       styleDetailsController.styleDetailsAPI(context);
+
+                                    }else{
+                                      Utils.showToast("Enter style query");
                                     }
+
                                   }else{
                                     Utils.showToast("No Internet");
                                   }
